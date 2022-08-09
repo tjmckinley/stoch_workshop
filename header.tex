@@ -3,8 +3,6 @@
 \usepackage[most]{tcolorbox}
 \tcbuselibrary{breakable}
 
-\newgeometry{margin=1in}
-
 \definecolor{taskCol}{HTML}{404040}
 \definecolor{taskCol1}{HTML}{808080}
 \definecolor{infoCol}{HTML}{1C668F}
@@ -16,8 +14,10 @@
 \newcommand{\eblockT}{\end{tcolorbox}}
 \newcommand{\bblockS}[2][Solution]{\begin{tcolorbox}[title = #1 #2, colframe=taskCol1, breakable, parbox = false]}
 \newcommand{\eblockS}{\end{tcolorbox}}
-\newcommand{\bblockI}[2][Info]{\begin{tcolorbox}[title = #1 #2, colframe=infoCol, parbox = false, breakable]}
+\newcommand{\bblockI}[1][Info]{\begin{tcolorbox}[title = #1, colframe=infoCol, parbox = false, breakable]}
 \newcommand{\eblockI}{\end{tcolorbox}}
+\newcommand{\bblockINT}{\begin{tcolorbox}[colframe=infoCol, parbox = false, breakable]}
+\newcommand{\eblockINT}{\end{tcolorbox}}
 
 %add tabbed solutions environment
 \newcommand{\bmp}{\begin{tcbraster}[raster columns = 2, raster valign = top]}
@@ -69,27 +69,6 @@
 
 \newcommand{\colpageref}[1]{\hypersetup{linkcolor=white}\pageref{#1}}
 
-\usepackage{listings}
-\lstset{
-  basicstyle=\ttfamily,
-  columns=fullflexible,
-  frame=single,
-  breaklines=true
-}
 
-% fonts
-\usepackage[sfdefault,light]{FiraSans}
-%\usepackage{FiraMono}
 
-% colour of code chunks
-\colorlet{shadecolor}{gray!15}
 
-% % change spacing around align
-% \makeatletter
-% \g@addto@macro\normalsize{%
-%   \setlength\abovedisplayskip{-30pt}
-%   \setlength\belowdisplayskip{-20pt}
-%   \setlength\abovedisplayshortskip{-20pt}
-%   \setlength\belowdisplayshortskip{-20pt}
-% }
-% \makeatother

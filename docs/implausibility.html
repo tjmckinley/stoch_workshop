@@ -217,9 +217,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>Since in this case study we want to emulate our model, without reference to a real-life analogue, the model represents the reality perfectly. For this reason we have <span class="math inline">\(V_m=0\)</span>. The term <span class="math inline">\(V_s\)</span>, which was zero when we worked on the deterministic SEIRS model (<a href="https://danny-sc.github.io/determ_workshop/index.html">Workshop 1</a>), is now non-zero, in order to account for the stochasticity of the model.</p>
 <p>A very large value of <span class="math inline">\(\text{Imp}(x)\)</span> means that we can be confident that the parameter set <span class="math inline">\(x\)</span> does not provide a good match to the observed data, even factoring in the additional uncertainty that comes with the use of emulators.</p>
 <p>To plot the maximum implausibility (across all emulators), we set <code>plot_type</code> to <code>nimp</code> in the call to <code>emulator_plot</code>:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="implausibility.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">emulator_plot</span>(stoch_emulators, <span class="at">plot_type =</span> <span class="st">&#39;nimp&#39;</span>, </span>
-<span id="cb22-2"><a href="implausibility.html#cb22-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">targets =</span> targets, <span class="at">params =</span> <span class="fu">c</span>(<span class="st">&#39;epsilon&#39;</span>, <span class="st">&#39;alpha&#39;</span>))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-24-1.png" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="implausibility.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">emulator_plot</span>(stoch_emulators, <span class="at">plot_type =</span> <span class="st">&#39;nimp&#39;</span>, </span>
+<span id="cb19-2"><a href="implausibility.html#cb19-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">targets =</span> targets, <span class="at">params =</span> <span class="fu">c</span>(<span class="st">&#39;epsilon&#39;</span>, <span class="st">&#39;alpha&#39;</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-26-1.png" style="display: block; margin: auto;" /></p>
 <div class="panel panel-default">
 <div class="panel-heading">
 Task
@@ -228,21 +228,21 @@ Task
 Use the argument <code>fixed_vals</code> to set the parameters that are not shown in the plot to be as in <code>chosen_params</code>. Verify that the implausibility at <code>chosen_params</code> is below 3.
 </div>
 </div>
-<button id="displayTextunnamed-chunk-26" onclick="javascript:toggle(&#39;unnamed-chunk-26&#39;);">
+<button id="displayTextunnamed-chunk-28" onclick="javascript:toggle(&#39;unnamed-chunk-28&#39;);">
 Show: Solution
 </button>
-<div id="toggleTextunnamed-chunk-26" style="display: none">
+<div id="toggleTextunnamed-chunk-28" style="display: none">
 <div class="panel panel-default">
 <div class="panel-heading panel-heading1">
 Solution
 </div>
 <div class="panel-body">
 <p>We set <code>fixed_vals</code> to <code>chosen_params[!names(chosen_params) %in% c('epsilon', 'alpha')]</code>, plot the maximum implausibility and add a point corresponding to the values of <span class="math inline">\(\sigma\)</span> and <span class="math inline">\(alpha\)</span> in <code>chosen_params</code>:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="implausibility.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">emulator_plot</span>(stoch_emulators, <span class="at">plot_type =</span> <span class="st">&#39;nimp&#39;</span>, <span class="at">targets =</span> targets,</span>
-<span id="cb23-2"><a href="implausibility.html#cb23-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">params =</span> <span class="fu">c</span>(<span class="st">&#39;epsilon&#39;</span>, <span class="st">&#39;alpha&#39;</span>),</span>
-<span id="cb23-3"><a href="implausibility.html#cb23-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">fixed_vals =</span> chosen_params[<span class="sc">!</span><span class="fu">names</span>(chosen_params) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&#39;epsilon&#39;</span>, <span class="st">&#39;alpha&#39;</span>)], </span>
-<span id="cb23-4"><a href="implausibility.html#cb23-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">cb=</span>T) <span class="sc">+</span><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">7</span>, <span class="at">y=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">50</span>), <span class="at">size=</span><span class="dv">3</span>)</span></code></pre></div>
-<img src="_main_files/figure-html/unnamed-chunk-48-1.png" style="display: block; margin: auto;" />
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="implausibility.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">emulator_plot</span>(stoch_emulators, <span class="at">plot_type =</span> <span class="st">&#39;nimp&#39;</span>, <span class="at">targets =</span> targets,</span>
+<span id="cb20-2"><a href="implausibility.html#cb20-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">params =</span> <span class="fu">c</span>(<span class="st">&#39;epsilon&#39;</span>, <span class="st">&#39;alpha&#39;</span>),</span>
+<span id="cb20-3"><a href="implausibility.html#cb20-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">fixed_vals =</span> chosen_params[<span class="sc">!</span><span class="fu">names</span>(chosen_params) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&#39;epsilon&#39;</span>, <span class="st">&#39;alpha&#39;</span>)], </span>
+<span id="cb20-4"><a href="implausibility.html#cb20-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">cb=</span>T) <span class="sc">+</span><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">7</span>, <span class="at">y=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">50</span>), <span class="at">size=</span><span class="dv">3</span>)</span></code></pre></div>
+<img src="_main_files/figure-html/unnamed-chunk-53-1.png" style="display: block; margin: auto;" />
 The plot shows what we expected: when <span class="math inline">\(\epsilon\)</span> and <span class="math inline">\(\alpha\)</span> are equal to their values in <code>chosen_params</code>, the implausibility measure is below the threshold <span class="math inline">\(3\)</span> (cf. black point in the box).
 </div>
 </div>
