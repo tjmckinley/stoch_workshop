@@ -1,7 +1,6 @@
 fig:unnamed-chunk-4
 fig:unnamed-chunk-6
 fig:unnamed-chunk-7
-fig:unnamed-chunk-8
 objectives
 an-overview-of-history-matching-with-emulation-and-hmer
 intro

@@ -158,11 +158,16 @@ get_results <- function(params, nreps = 100, outs, times, raw = FALSE) {
 ```
 
 # Objectives
-In this workshop, you will learn to perform history matching with emulation on models with stochasticity, using the [hmer](https://github.com/Tandethsquire/hmer) package. This workshop should be addressed after working on [Workshop 1](https://danny-sc.github.io/determ_workshop/index.html), which shows how to perform history matching with emulation on deterministic models. Note that bits and pieces which are specific to the calibration of stochastic models have been put inside boxes:
+
+In this workshop, you will learn how to perform history matching with emulation on stochastic models, using the [hmer](https://github.com/Tandethsquire/hmer) package. Much of the calibration process is the same for stochastic and deterministic models, and we therefore recommend that before starting this workshop you complete [Workshop 1](https://danny-sc.github.io/determ_workshop/index.html), which shows how to perform history matching with emulation on deterministic models. In this workshop, we cover the overall process in less detail, with new information that is specific to stochastic models highlighted using boxes:
 
 ```{info, title = NA, collapsible = FALSE}
-A box like this contains material which is specific to the calibration of stochastic models and is therefore different from the corresponding material in the deterministic workshop.
+
+Boxes like these contain material that is specific to the calibration of stochastic models, and is therefore not covered in the deterministic workshop.
+
 ```
+
+Before starting the tutorial, you will need to run the code contained in the box below: it will load all relevant dependencies and a few helper functions which will be introduced and used later.   
 
 ```{info, title="Code to load relevant libraries and helper functions"}
 
@@ -297,16 +302,17 @@ As shown in the above image, history matching with emulation proceeds in the fol
 4. Emulators are evaluated at a large number of parameter sets. The implausibility of each of these is then assessed, and the model run using parameter sets classified as non-implausible. 
 5. The process is stopped or a new wave of the process is performed, going back to step 2.
 
-```{info, title = NA, collapsible = FALSE}
-
-The table below associates each step of the process with the corresponding hmer function. Note that step 1 and 5 are not in the table, since they are specific to each model and calibration task. The last column of the table indicates what section of this workshop deals with each step of the process.
-
-```
-
-``` {r, echo = FALSE, fig.cap='The three main hmer functions', out.width="120%"}
+```{r, table_funcs, include = FALSE}
 knitr::include_graphics('table_functions.png')
 ```
 
+```{info, title = NA, collapsible=FALSE}
+The table below associates each step of the process with the corresponding hmer function. Note that 
+step 1 and 5 are not in the table, since they are specific to each model and calibration task. 
+The last column of the table indicates what section of this workshop deals with each step of the process.    
+``{r, echo=FALSE, ref.label = "table_funcs", out.width="120%"}
+``
+```
 
 # Introduction to the model {#intro}
 In this section we introduce the model that we will work with throughout our workshop. To facilitate the comparison between the deterministic and the stochastic setting, we will work with the <span class="abbr" title="A model consisting of four compartments 
@@ -866,3 +872,5 @@ Since this is an iterative process, at the end of each wave we need to decide wh
 ```
 
 We conclude by noting that in this workshop we dealt with stochasticity, but not with bimodality (i.e. when one can perform multiple repetitions at a given parameter set and find two distinct classes of behaviour. The most common example of bimodality is ‘take off vs die out’: if the initial number of infected people is low, the disease might infrequently find its way into the population, but blowing up on those rare circumstances it does). The calibration of stochastic models that can have a bimodal behaviour is addressed in Workshop 3.
+
+

@@ -252,14 +252,14 @@ model which we used in <a href="https://danny-sc.github.io/determ_workshop/index
 <li><p><span class="math inline">\(\gamma\)</span> is the recovery rate and</p></li>
 <li><p><span class="math inline">\(\omega\)</span> is the rate at which immunity is lost following recovery.</p></li>
 </ul>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
 <img src="seirs.PNG" alt="SEIRS Diagram"  />
 <p class="caption">
 Figure 3.1: SEIRS Diagram
 </p>
 </div>
 <p>The rate of infection between each infectious and susceptible person <span class="math inline">\(\beta(t)\)</span> is set to be a simple linear function interpolating between points, where the points in question are <span class="math inline">\(\beta(0)=\beta_1\)</span>, <span class="math inline">\(\beta(100) = \beta(180) = \beta_2\)</span>, <span class="math inline">\(\beta(270) = \beta_3\)</span> and where <span class="math inline">\(\beta_2 &lt; \beta_1 &lt; \beta_3\)</span>. This choice was made to represent an infection rate that initially drops due to external (social) measures and then raises when a more infectious variant appears. Here <span class="math inline">\(t\)</span> is taken to measure days. Below we show a graph of the infection rate over time when <span class="math inline">\(\beta_1=0.3, \beta_2=0.1\)</span> and <span class="math inline">\(\beta_3=0.4\)</span>:</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-8"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
 <img src="infection_rate.png" alt="Graph of the rate of infection between each infectious and susceptible person" width="60%" />
 <p class="caption">
 Figure 3.2: Graph of the rate of infection between each infectious and susceptible person
@@ -294,13 +294,13 @@ we get a 3-dimensional array <code>solution</code> such that <code>solution[t,j,
 <span id="cb4-2"><a href="intro.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>) <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) <span class="fu">lines</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">200</span>, solution[,j,i], <span class="at">col=</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>)[j<span class="dv">-2</span>], <span class="at">lwd=</span><span class="fl">0.3</span>)</span>
 <span id="cb4-3"><a href="intro.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&#39;topleft&#39;</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&#39;Infected&#39;</span>, <span class="st">&quot;Recovered&quot;</span>), <span class="at">lty =</span> <span class="dv">1</span>, </span>
 <span id="cb4-4"><a href="intro.html#cb4-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>), <span class="at">inset =</span> <span class="fu">c</span>(<span class="fl">0.05</span>, <span class="fl">0.05</span>))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /></p>
 <p>The plot above clearly shows the stochasticity of our model. Furthermore we can also appreciate how the spread of the runs varies across the time: for example, the variance in the number of infected individuals is largest around <span class="math inline">\(t=40\)</span> and quite small at later times.</p>
 <p>Plotting the results for “S” also shows stochasticity:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="intro.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">200</span>, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1000</span>), <span class="at">ty=</span><span class="st">&quot;n&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Time&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Number&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Susceptibles&quot;</span>)</span>
 <span id="cb5-2"><a href="intro.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) <span class="fu">lines</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">200</span>, solution[,<span class="dv">1</span>,i], <span class="at">col=</span><span class="st">&#39;black&#39;</span>, <span class="at">lwd=</span><span class="fl">0.3</span>, </span>
 <span id="cb5-3"><a href="intro.html#cb5-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">xlab =</span> <span class="st">&quot;Time&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Number&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Susceptibles&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto;" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /></p>
 <div class="panel panel-default">
 <div class="panel-heading">
 Task
@@ -330,9 +330,9 @@ Task
 <span id="cb6-16"><a href="intro.html#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">&lt;/div&gt;&lt;/div&gt;&lt;/div&gt; &lt;/div&gt;&lt;/div&gt;</span></span>
 <span id="cb6-17"><a href="intro.html#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-18"><a href="intro.html#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-19"><a href="intro.html#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="at">&lt;button id=&quot;displayTextunnamed-chunk-15&quot; onclick=&quot;javascript:toggle(&#39;unnamed-chunk-15&#39;);&quot;&gt;Show: Solution&lt;/button&gt;</span></span>
+<span id="cb6-19"><a href="intro.html#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="at">&lt;button id=&quot;displayTextunnamed-chunk-14&quot; onclick=&quot;javascript:toggle(&#39;unnamed-chunk-14&#39;);&quot;&gt;Show: Solution&lt;/button&gt;</span></span>
 <span id="cb6-20"><a href="intro.html#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-21"><a href="intro.html#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="at">&lt;div id=&quot;toggleTextunnamed-chunk-15&quot; style=&quot;display: none&quot;&gt;&lt;div class=&quot;panel panel-default&quot;&gt;&lt;div class=&quot;panel-heading panel-heading1&quot;&gt; Solution &lt;/div&gt;&lt;div class=&quot;panel-body&quot;&gt;</span></span>
+<span id="cb6-21"><a href="intro.html#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="at">&lt;div id=&quot;toggleTextunnamed-chunk-14&quot; style=&quot;display: none&quot;&gt;&lt;div class=&quot;panel panel-default&quot;&gt;&lt;div class=&quot;panel-heading panel-heading1&quot;&gt; Solution &lt;/div&gt;&lt;div class=&quot;panel-body&quot;&gt;</span></span>
 <span id="cb6-22"><a href="intro.html#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="at">Let us see what happens when a higher rate of infection between each infectious and susceptible person is considered:</span></span>
 <span id="cb6-23"><a href="intro.html#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="at">  </span></span>
 <span id="cb6-24"><a href="intro.html#cb6-24" aria-hidden="true" tabindex="-1"></a></span>

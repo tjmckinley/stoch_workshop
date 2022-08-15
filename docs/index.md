@@ -28,10 +28,15 @@ description: "An interactive introduction to the hmer package"
 
 
 # Objectives
-In this workshop, you will learn to perform history matching with emulation on models with stochasticity, using the [hmer](https://github.com/Tandethsquire/hmer) package. This workshop should be addressed after working on [Workshop 1](https://danny-sc.github.io/determ_workshop/index.html), which shows how to perform history matching with emulation on deterministic models. Note that bits and pieces which are specific to the calibration of stochastic models have been put inside boxes:
+
+In this workshop, you will learn how to perform history matching with emulation on stochastic models, using the [hmer](https://github.com/Tandethsquire/hmer) package. Much of the calibration process is the same for stochastic and deterministic models, and we therefore recommend that before starting this workshop you complete [Workshop 1](https://danny-sc.github.io/determ_workshop/index.html), which shows how to perform history matching with emulation on deterministic models. In this workshop, we cover the overall process in less detail, with new information that is specific to stochastic models highlighted using boxes:
 
 <div class="panel panel-default"><div class="panel-body"> 
-A box like this contains material which is specific to the calibration of stochastic models and is therefore different from the corresponding material in the deterministic workshop. </div></div>
+
+Boxes like these contain material that is specific to the calibration of stochastic models, and is therefore not covered in the deterministic workshop.
+ </div></div>
+
+Before starting the tutorial, you will need to run the code contained in the box below: it will load all relevant dependencies and a few helper functions which will be introduced and used later.   
 
 <infobutton id="displayTextunnamed-chunk-3" onclick="javascript:toggle('unnamed-chunk-3');">Show: Code to load relevant libraries and helper functions</infobutton>
 
@@ -168,16 +173,13 @@ As shown in the above image, history matching with emulation proceeds in the fol
 4. Emulators are evaluated at a large number of parameter sets. The implausibility of each of these is then assessed, and the model run using parameter sets classified as non-implausible. 
 5. The process is stopped or a new wave of the process is performed, going back to step 2.
 
+
+
 <div class="panel panel-default"><div class="panel-body"> 
-
-The table below associates each step of the process with the corresponding hmer function. Note that step 1 and 5 are not in the table, since they are specific to each model and calibration task. The last column of the table indicates what section of this workshop deals with each step of the process.
- </div></div>
-
-<div class="figure" style="text-align: center">
-<img src="table_functions.png" alt="The three main hmer functions" width="120%" />
-<p class="caption">(\#fig:unnamed-chunk-6)The three main hmer functions</p>
-</div>
-
+The table below associates each step of the process with the corresponding hmer function. Note that 
+step 1 and 5 are not in the table, since they are specific to each model and calibration task. 
+The last column of the table indicates what section of this workshop deals with each step of the process.    
+<img src="table_functions.png" width="120%" style="display: block; margin: auto;" /> </div></div>
 
 # Introduction to the model {#intro}
 In this section we introduce the model that we will work with throughout our workshop. To facilitate the comparison between the deterministic and the stochastic setting, we will work with the <span class="abbr" title="A model consisting of four compartments 
@@ -237,7 +239,7 @@ where $N$ is the total population, varying over time, and the parameters are as 
 
 <div class="figure" style="text-align: center">
 <img src="seirs.png" alt="SEIRS Diagram"  />
-<p class="caption">(\#fig:unnamed-chunk-7)SEIRS Diagram</p>
+<p class="caption">(\#fig:unnamed-chunk-6)SEIRS Diagram</p>
 </div>
 
 
@@ -245,7 +247,7 @@ The rate of infection between each infectious and susceptible person $\beta(t)$ 
 
 <div class="figure" style="text-align: center">
 <img src="infection_rate.png" alt="Graph of the rate of infection between each infectious and susceptible person" width="60%" />
-<p class="caption">(\#fig:unnamed-chunk-8)Graph of the rate of infection between each infectious and susceptible person</p>
+<p class="caption">(\#fig:unnamed-chunk-7)Graph of the rate of infection between each infectious and susceptible person</p>
 </div>
 
 <div class="panel panel-default"><div class="panel-body"> 
@@ -288,7 +290,7 @@ legend('topleft', legend = c('Infected', "Recovered"), lty = 1,
        col = c(3,4), inset = c(0.05, 0.05))
 ```
 
-<img src="_main_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" />
+<img src="_main_files/figure-html/unnamed-chunk-11-1.png" style="display: block; margin: auto;" />
 
 The plot above clearly shows the stochasticity of our model. Furthermore we can also appreciate how the spread of the runs varies across the time: for example, the variance in the number of infected individuals is largest around $t=40$ and quite small at later times.
 
@@ -302,7 +304,7 @@ for(i in 1:100) lines(0:200, solution[,1,i], col='black', lwd=0.3,
                       xlab = "Time", ylab = "Number", main = "Susceptibles")
 ```
 
-<img src="_main_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto;" />
+<img src="_main_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" />
 
 
 
@@ -335,9 +337,9 @@ legend('topleft', legend = c('Infected', "Recovered"), lty = 1,
 ```</div></div></div> </div></div>
 
 
-<button id="displayTextunnamed-chunk-15" onclick="javascript:toggle('unnamed-chunk-15');">Show: Solution</button>
+<button id="displayTextunnamed-chunk-14" onclick="javascript:toggle('unnamed-chunk-14');">Show: Solution</button>
 
-<div id="toggleTextunnamed-chunk-15" style="display: none"><div class="panel panel-default"><div class="panel-heading panel-heading1"> Solution </div><div class="panel-body">
+<div id="toggleTextunnamed-chunk-14" style="display: none"><div class="panel panel-default"><div class="panel-heading panel-heading1"> Solution </div><div class="panel-body">
 Let us see what happens when a higher rate of infection between each infectious and susceptible person is considered:
   
 
@@ -548,13 +550,13 @@ Let's take a look at the two sets of emulators stored in `stoch_emulators`, star
 plot_actives(stoch_emulators$variance)
 ```
 
-<img src="_main_files/figure-html/unnamed-chunk-24-1.png" style="display: block; margin: auto;" />
+<img src="_main_files/figure-html/unnamed-chunk-23-1.png" style="display: block; margin: auto;" />
 
 ```r
 plot_actives(stoch_emulators$expectation)
 ```
 
-<img src="_main_files/figure-html/unnamed-chunk-24-2.png" style="display: block; margin: auto;" />
+<img src="_main_files/figure-html/unnamed-chunk-23-2.png" style="display: block; margin: auto;" />
 
 These plots show what variables are active, i.e. have the most explanatory power, for each of the mean and variance emulators. We see that $b$ and $\mu$ are inactive for almost all outputs in the variance emulators, even though they are active for some outputs in the mean emulators. Parameters $\beta_1$, $\beta_2$, $\epsilon$, $\alpha$ are active for most or all outputs in the mean emulators. 
 
@@ -601,14 +603,14 @@ emulator_plot(stoch_emulators, plot_type = 'nimp',
               targets = targets, params = c('epsilon', 'alpha'))
 ```
 
-<img src="_main_files/figure-html/unnamed-chunk-26-1.png" style="display: block; margin: auto;" />
+<img src="_main_files/figure-html/unnamed-chunk-25-1.png" style="display: block; margin: auto;" />
 
 <div class="panel panel-default"><div class="panel-heading"> Task </div><div class="panel-body"> 
 Use the argument `fixed_vals` to set the parameters that are not shown in the plot to be as in `chosen_params`. Verify that the implausibility at `chosen_params` is below 3. </div></div>
 
-<button id="displayTextunnamed-chunk-28" onclick="javascript:toggle('unnamed-chunk-28');">Show: Solution</button>
+<button id="displayTextunnamed-chunk-27" onclick="javascript:toggle('unnamed-chunk-27');">Show: Solution</button>
 
-<div id="toggleTextunnamed-chunk-28" style="display: none"><div class="panel panel-default"><div class="panel-heading panel-heading1"> Solution </div><div class="panel-body">
+<div id="toggleTextunnamed-chunk-27" style="display: none"><div class="panel panel-default"><div class="panel-heading panel-heading1"> Solution </div><div class="panel-body">
 We set `fixed_vals` to `chosen_params[!names(chosen_params) %in% c('epsilon', 'alpha')]`, plot the maximum implausibility and add a point corresponding to the values of $\sigma$ and $alpha$ in `chosen_params`:
 
 ```r
@@ -625,9 +627,9 @@ The plot shows what we expected: when $\epsilon$ and $\alpha$ are equal to their
 
 The function `validation_diagnostics` can be used as in the deterministic case, to get three diagnostics for each emulated output.
 
-<infobutton id="displayTextunnamed-chunk-29" onclick="javascript:toggle('unnamed-chunk-29');">Show: Remind me of what each diagnostics means</infobutton>
+<infobutton id="displayTextunnamed-chunk-28" onclick="javascript:toggle('unnamed-chunk-28');">Show: Remind me of what each diagnostics means</infobutton>
 
-<div id="toggleTextunnamed-chunk-29" style="display: none"><div class="panel panel-default"><div class="panel-body">
+<div id="toggleTextunnamed-chunk-28" style="display: none"><div class="panel panel-default"><div class="panel-body">
 **The first column** shows the emulator outputs plotted against the model outputs. In particular, the emulator expectation is plotted against the model output for each validation point, providing the dots in the graph. The emulator uncertainty at each validation point is shown in the form of a vertical interval that goes from $3\sigma$ below to $3\sigma$ above the emulator expectation, where $\sigma$ is the emulator variance at the considered point.  An 'ideal' emulator would exactly reproduce the model results: this behaviour is represented by the green line $f(x)=E[f(x)]$ (this is a diagonal line, visible here only in the bottom left and top right corners). Any parameter set whose emulator prediction lies more than $3\sigma$ away from the model output is highlighted in red. Note that we do not need to have no red points for the test to be passed: since we are plotting $3\sigma$ bounds, statistically speaking it is ok to have up to $5\%$ of validation points in red (see [Pukelsheim's $3\sigma$ rule](https://en.wikipedia.org/wiki/68%E2%80%9395%E2%80%9399.7_rule)).
 **The second column** compares the emulator implausibility to the equivalent model implausibility (i.e. the implausibility calculated replacing the emulator output with the model output). There are three cases to consider:
   
@@ -646,7 +648,7 @@ Finally, **the third column** gives the standardised errors of the emulator outp
 vd <- validation_diagnostics(stoch_emulators$expectation, targets, all_valid, plt=TRUE, row=2)
 ```
 
-<img src="_main_files/figure-html/unnamed-chunk-30-1.png" style="display: block; margin: auto;" /><img src="_main_files/figure-html/unnamed-chunk-30-2.png" style="display: block; margin: auto;" /><img src="_main_files/figure-html/unnamed-chunk-30-3.png" style="display: block; margin: auto;" /><img src="_main_files/figure-html/unnamed-chunk-30-4.png" style="display: block; margin: auto;" />
+<img src="_main_files/figure-html/unnamed-chunk-29-1.png" style="display: block; margin: auto;" /><img src="_main_files/figure-html/unnamed-chunk-29-2.png" style="display: block; margin: auto;" /><img src="_main_files/figure-html/unnamed-chunk-29-3.png" style="display: block; margin: auto;" /><img src="_main_files/figure-html/unnamed-chunk-29-4.png" style="display: block; margin: auto;" />
 
 Note that by default `validation_diagnostics` groups the outputs in sets of three. Since here we have 8 outputs, we set the argument `row` to 2: this is not strictly necessary but improves the format of the grid of plots obtained. As in deterministic case, we can enlarge the $\sigma$ values of the mean emulators to obtain more conservative emulators, if needed. Based on the diagnostics above, all emulators perform quite well, so we won't modify any $\sigma$ values here. 
 
@@ -668,7 +670,7 @@ Here we generated $150$ points, since we are going to use $100$ of them to train
 plot_wrap(new_points, ranges)
 ```
 
-<img src="_main_files/figure-html/unnamed-chunk-32-1.png" style="display: block; margin: auto;" />
+<img src="_main_files/figure-html/unnamed-chunk-31-1.png" style="display: block; margin: auto;" />
 
 Here we see which parameters are more or less constrained at the end of the first wave. For example, it seems clear that low values of $\gamma$ cannot produce a match (cf. penultimate column). We can also deduce relationships between parameters: $\beta_1$ and $\epsilon$ are an example of negatively-correlated parameters. If $\beta_1$ is large then $\epsilon$ needs to be small, and vice versa. Other parameters, such as $\omega$ or $\mu$, are instead still spread out across their initial range.
 
@@ -716,7 +718,7 @@ As usual, before using the obtained emulators, we need to check their diagnostic
 vd <- validation_diagnostics(new_stoch_emulators, targets, new_all_valid, plt=TRUE, row=2)
 ```
 
-<img src="_main_files/figure-html/unnamed-chunk-36-1.png" style="display: block; margin: auto;" /><img src="_main_files/figure-html/unnamed-chunk-36-2.png" style="display: block; margin: auto;" /><img src="_main_files/figure-html/unnamed-chunk-36-3.png" style="display: block; margin: auto;" /><img src="_main_files/figure-html/unnamed-chunk-36-4.png" style="display: block; margin: auto;" />
+<img src="_main_files/figure-html/unnamed-chunk-35-1.png" style="display: block; margin: auto;" /><img src="_main_files/figure-html/unnamed-chunk-35-2.png" style="display: block; margin: auto;" /><img src="_main_files/figure-html/unnamed-chunk-35-3.png" style="display: block; margin: auto;" /><img src="_main_files/figure-html/unnamed-chunk-35-4.png" style="display: block; margin: auto;" />
 
 Since these diagnostics look good, we can generate new non-implausible points. Here is the second caveat: we now need to pass both `new_stoch_emulators` and `stoch_emulators` to the `generate_new_runs` function, since a point needs to be non-implausible for all emulators trained so far, and not just for emulators trained in the current wave:
 
@@ -738,7 +740,7 @@ wave_points(list(initial_points, new_points, new_new_points), input_names = name
             ggplot2::theme(axis.text.x = ggplot2::element_text(size = 6))
 ```
 
-<img src="_main_files/figure-html/unnamed-chunk-38-1.png" style="display: block; margin: auto;" />
+<img src="_main_files/figure-html/unnamed-chunk-37-1.png" style="display: block; margin: auto;" />
 
 Here we can easily see that the distributions of the second and third wave points are more narrow than those of the first wave. 
 
@@ -783,18 +785,20 @@ In the third visualisation, output values for non-implausible parameter sets at 
 wave_values(all_aggregated, targets, l_wid=1) 
 ```
 
-<img src="_main_files/figure-html/unnamed-chunk-41-1.png" style="display: block; margin: auto;" />
+<img src="_main_files/figure-html/unnamed-chunk-40-1.png" style="display: block; margin: auto;" />
 
 The argument `l_wid` is optional and helps customise the width of the red lines that create the target boxes. The main diagonal shows the distribution of each output at the end of each wave, with the vertical red lines indicating the lower and upper bounds of the target. Above and below the main diagonal are plots for each pair of targets, with rectangles indicating the target area where full fitting points should lie (the ranges are normalised in the figures above the diagonals). These graphs can provide additional information on output distributions, such as correlations between them. For example, here we see positive correlations between $I25$ and $R25$ and $R40$.
 
 In this workshop we have shown how to perform the first two waves of the history matching process on a stochastic model. Of course, more waves are required, in order to complete the calibration task. 
 
-<infobutton id="displayTextunnamed-chunk-42" onclick="javascript:toggle('unnamed-chunk-42');">Show: Remind me of possible stopping criteria</infobutton>
+<infobutton id="displayTextunnamed-chunk-41" onclick="javascript:toggle('unnamed-chunk-41');">Show: Remind me of possible stopping criteria</infobutton>
 
-<div id="toggleTextunnamed-chunk-42" style="display: none"><div class="panel panel-default"><div class="panel-body">
+<div id="toggleTextunnamed-chunk-41" style="display: none"><div class="panel panel-default"><div class="panel-body">
 Since this is an iterative process, at the end of each wave we need to decide whether to perform a new wave or to stop. One possible stopping criterion consists of comparing the emulator uncertainty and the target uncertainty. If the former is larger, another wave can be performed, since new, more confident emulators can potentially help further reduce the non-implausible space. If the uncertainty of emulators is smaller than the uncertainty in the targets, improving the performance of emulators would not make a substantial difference, and additional waves would not be beneficial. We may also choose to stop the iterations when we get emulators that provide us with full fitting points at a sufficiently high rate. In such a case, rather than spending time training new emulators, we can generate new points with the function `generate_new_runs` using the current emulators until we find enough full fitting ones. Finally, we might end up with all the input space deemed implausible at the end of a wave. In this situation, we would deduce that there are no parameter sets that give an acceptable match with the data: in particular, this would raise doubts about the adequacy of the chosen model, or input and/or output ranges.</div></div></div>
 
 We conclude by noting that in this workshop we dealt with stochasticity, but not with bimodality (i.e. when one can perform multiple repetitions at a given parameter set and find two distinct classes of behaviour. The most common example of bimodality is ‘take off vs die out’: if the initial number of infected people is low, the disease might infrequently find its way into the population, but blowing up on those rare circumstances it does). The calibration of stochastic models that can have a bimodal behaviour is addressed in Workshop 3.
+
+
 
 <!--chapter:end:index.Rmd-->
 
