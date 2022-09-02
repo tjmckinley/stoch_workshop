@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="second-wave.html"/>
-
+<link rel="prev" href="secondwave.html"/>
+<link rel="next" href="dealing-with-bimodality.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -184,8 +184,16 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="implausibility.html"><a href="implausibility.html"><i class="fa fa-check"></i><b>6</b> Implausibility</a></li>
 <li class="chapter" data-level="7" data-path="emulator-diagnostics.html"><a href="emulator-diagnostics.html"><i class="fa fa-check"></i><b>7</b> Emulator diagnostics</a></li>
 <li class="chapter" data-level="8" data-path="proposing-new-points.html"><a href="proposing-new-points.html"><i class="fa fa-check"></i><b>8</b> Proposing new points</a></li>
-<li class="chapter" data-level="9" data-path="second-wave.html"><a href="second-wave.html"><i class="fa fa-check"></i><b>9</b> Second wave</a></li>
+<li class="chapter" data-level="9" data-path="secondwave.html"><a href="secondwave.html"><i class="fa fa-check"></i><b>9</b> Second wave</a></li>
 <li class="chapter" data-level="10" data-path="visualisation-of-the-non-implausible-space-by-wave.html"><a href="visualisation-of-the-non-implausible-space-by-wave.html"><i class="fa fa-check"></i><b>10</b> Visualisation of the non-implausible space by wave</a></li>
+<li class="chapter" data-level="11" data-path="dealing-with-bimodality.html"><a href="dealing-with-bimodality.html"><i class="fa fa-check"></i><b>11</b> Dealing with bimodality</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="dealing-with-bimodality.html"><a href="dealing-with-bimodality.html#bimodal_wave0---design-points"><i class="fa fa-check"></i><b>11.1</b> ‘bimodal_wave0’ - design points</a></li>
+<li class="chapter" data-level="11.2" data-path="dealing-with-bimodality.html"><a href="dealing-with-bimodality.html#bimodal-emulators"><i class="fa fa-check"></i><b>11.2</b> Bimodal Emulators</a></li>
+<li class="chapter" data-level="11.3" data-path="dealing-with-bimodality.html"><a href="dealing-with-bimodality.html#implausibility-1"><i class="fa fa-check"></i><b>11.3</b> Implausibility</a></li>
+<li class="chapter" data-level="11.4" data-path="dealing-with-bimodality.html"><a href="dealing-with-bimodality.html#emulator-diagnostics-1"><i class="fa fa-check"></i><b>11.4</b> Emulator diagnostics</a></li>
+<li class="chapter" data-level="11.5" data-path="dealing-with-bimodality.html"><a href="dealing-with-bimodality.html#proposing-new-points-1"><i class="fa fa-check"></i><b>11.5</b> Proposing new points</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -207,34 +215,35 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">10</span> Visualisation of the non-implausible space by wave</h1>
 <p>In this last section we present three visualisations that can be used to compare the non-implausible space identified at different waves of the process.</p>
 <p>The first visualisation, obtained through the function <code>wave_points</code>, shows the distribution of the non-implausible space for the waves of interest. For example, let us plot the distribution of five of the parameter sets at the beginning, at the end of wave one and at the end of wave two:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wave_points</span>(<span class="fu">list</span>(initial_points, new_points, new_new_points), <span class="at">input_names =</span> <span class="fu">names</span>(ranges)[<span class="dv">4</span><span class="sc">:</span><span class="dv">8</span>]) <span class="sc">+</span></span>
-<span id="cb28-2"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb28-2" aria-hidden="true" tabindex="-1"></a>            ggplot2<span class="sc">::</span><span class="fu">theme</span>(<span class="at">axis.text.x =</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wave_points</span>(<span class="fu">list</span>(initial_points, new_points, new_new_points), </span>
+<span id="cb29-2"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb29-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">input_names =</span> <span class="fu">names</span>(ranges)[<span class="dv">4</span><span class="sc">:</span><span class="dv">8</span>]) <span class="sc">+</span></span>
+<span id="cb29-3"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb29-3" aria-hidden="true" tabindex="-1"></a>            ggplot2<span class="sc">::</span><span class="fu">theme</span>(<span class="at">axis.text.x =</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>))</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-37-1.png" style="display: block; margin: auto;" /></p>
 <p>Here we can easily see that the distributions of the second and third wave points are more narrow than those of the first wave.</p>
 <p>The second visualisation allows us to assess how much better parameter sets at later waves perform compared to the original <code>initial_points</code>. Let us start by evaluating the model at parameter sets in <code>new_new_points</code>:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb29-1" aria-hidden="true" tabindex="-1"></a>new_new_training_list <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb29-2"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(new_new_points)) {</span>
-<span id="cb29-3"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb29-3" aria-hidden="true" tabindex="-1"></a>  model_out <span class="ot">&lt;-</span> <span class="fu">get_results</span>(<span class="fu">unlist</span>(new_new_points[i,]), <span class="at">nreps =</span> <span class="dv">50</span>, <span class="at">outs =</span> <span class="fu">c</span>(<span class="st">&quot;I&quot;</span>, <span class="st">&quot;R&quot;</span>), </span>
-<span id="cb29-4"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb29-4" aria-hidden="true" tabindex="-1"></a>                           <span class="at">times =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">40</span>, <span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">300</span>, <span class="dv">350</span>, <span class="dv">450</span>))</span>
-<span id="cb29-5"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb29-5" aria-hidden="true" tabindex="-1"></a>  new_new_training_list[[i]] <span class="ot">&lt;-</span> model_out</span>
-<span id="cb29-6"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb29-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb29-7"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb29-7" aria-hidden="true" tabindex="-1"></a>new_new_all_training <span class="ot">&lt;-</span>  <span class="fu">data.frame</span>(<span class="fu">do.call</span>(<span class="st">&#39;rbind&#39;</span>,new_new_training_list))</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb30-1" aria-hidden="true" tabindex="-1"></a>new_new_training_list <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb30-2"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(new_new_points)) {</span>
+<span id="cb30-3"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb30-3" aria-hidden="true" tabindex="-1"></a>  model_out <span class="ot">&lt;-</span> <span class="fu">get_results</span>(<span class="fu">unlist</span>(new_new_points[i,]), <span class="at">nreps =</span> <span class="dv">50</span>, <span class="at">outs =</span> <span class="fu">c</span>(<span class="st">&quot;I&quot;</span>, <span class="st">&quot;R&quot;</span>), </span>
+<span id="cb30-4"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb30-4" aria-hidden="true" tabindex="-1"></a>                           <span class="at">times =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">40</span>, <span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">300</span>, <span class="dv">350</span>, <span class="dv">450</span>))</span>
+<span id="cb30-5"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb30-5" aria-hidden="true" tabindex="-1"></a>  new_new_training_list[[i]] <span class="ot">&lt;-</span> model_out</span>
+<span id="cb30-6"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb30-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb30-7"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb30-7" aria-hidden="true" tabindex="-1"></a>new_new_all_training <span class="ot">&lt;-</span>  <span class="fu">data.frame</span>(<span class="fu">do.call</span>(<span class="st">&#39;rbind&#39;</span>,new_new_training_list))</span></code></pre></div>
 <div class="panel panel-default">
 <div class="panel-body">
 <p>In this workshop we assume that for a given parameter set <span class="math inline">\(x\)</span>, we are interested in the mean of each model output at <span class="math inline">\(x\)</span> across different realisations, rather than in the output of each realisation at <span class="math inline">\(x\)</span>. For this reason, we will use the helper function <code>aggregate_points</code>, which calculates the mean of each output across different realisations.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb30-1" aria-hidden="true" tabindex="-1"></a>all_training_aggregated <span class="ot">&lt;-</span> <span class="fu">aggregate_points</span>(all_training, <span class="fu">names</span>(ranges))</span>
-<span id="cb30-2"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb30-2" aria-hidden="true" tabindex="-1"></a>new_all_training_aggregated <span class="ot">&lt;-</span> <span class="fu">aggregate_points</span>(new_all_training, <span class="fu">names</span>(ranges))</span>
-<span id="cb30-3"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb30-3" aria-hidden="true" tabindex="-1"></a>new_new_all_training_aggregated <span class="ot">&lt;-</span> <span class="fu">aggregate_points</span>(new_new_all_training, <span class="fu">names</span>(ranges))</span>
-<span id="cb30-4"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb30-4" aria-hidden="true" tabindex="-1"></a>all_aggregated <span class="ot">&lt;-</span> <span class="fu">list</span>(all_training_aggregated, new_all_training_aggregated, </span>
-<span id="cb30-5"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb30-5" aria-hidden="true" tabindex="-1"></a>                     new_new_all_training_aggregated)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb31-1" aria-hidden="true" tabindex="-1"></a>all_training_aggregated <span class="ot">&lt;-</span> <span class="fu">aggregate_points</span>(all_training, <span class="fu">names</span>(ranges))</span>
+<span id="cb31-2"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb31-2" aria-hidden="true" tabindex="-1"></a>new_all_training_aggregated <span class="ot">&lt;-</span> <span class="fu">aggregate_points</span>(new_all_training, <span class="fu">names</span>(ranges))</span>
+<span id="cb31-3"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb31-3" aria-hidden="true" tabindex="-1"></a>new_new_all_training_aggregated <span class="ot">&lt;-</span> <span class="fu">aggregate_points</span>(new_new_all_training, <span class="fu">names</span>(ranges))</span>
+<span id="cb31-4"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb31-4" aria-hidden="true" tabindex="-1"></a>all_aggregated <span class="ot">&lt;-</span> <span class="fu">list</span>(all_training_aggregated, new_all_training_aggregated, </span>
+<span id="cb31-5"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb31-5" aria-hidden="true" tabindex="-1"></a>                     new_new_all_training_aggregated)</span></code></pre></div>
 <p>We are now ready to compare the performance of parameter sets at the end of each wave, passing the list <code>all_aggregated</code> and the list <code>targets</code> to the function <code>simulator_plot</code>:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">simulator_plot</span>(all_aggregated, targets, <span class="at">barcol =</span> <span class="st">&quot;grey&quot;</span>)</span></code></pre></div>
-<img src="_main_files/figure-html/unnamed-chunk-55-1.png" style="display: block; margin: auto;" />
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">simulator_plot</span>(all_aggregated, targets, <span class="at">barcol =</span> <span class="st">&quot;grey&quot;</span>)</span></code></pre></div>
+<img src="_main_files/figure-html/unnamed-chunk-70-1.png" style="display: block; margin: auto;" />
 </div>
 </div>
 <p>Note that in this call we set <code>barcol="white"</code> in order to have the target intervals in white, instead of black. This plot clearly shows that parameter sets at the end of the first and second wave perform better than the initial set of points.</p>
 <p>In the third visualisation, output values for non-implausible parameter sets at each wave are shown for each combination of two outputs:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wave_values</span>(all_aggregated, targets, <span class="at">l_wid=</span><span class="dv">1</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="visualisation-of-the-non-implausible-space-by-wave.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wave_values</span>(all_aggregated, targets, <span class="at">l_wid=</span><span class="dv">1</span>) </span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-40-1.png" style="display: block; margin: auto;" /></p>
 <p>The argument <code>l_wid</code> is optional and helps customise the width of the red lines that create the target boxes. The main diagonal shows the distribution of each output at the end of each wave, with the vertical red lines indicating the lower and upper bounds of the target. Above and below the main diagonal are plots for each pair of targets, with rectangles indicating the target area where full fitting points should lie (the ranges are normalised in the figures above the diagonals). These graphs can provide additional information on output distributions, such as correlations between them. For example, here we see positive correlations between <span class="math inline">\(I25\)</span> and <span class="math inline">\(R25\)</span> and <span class="math inline">\(R40\)</span>.</p>
 <p>In this workshop we have shown how to perform the first two waves of the history matching process on a stochastic model. Of course, more waves are required, in order to complete the calibration task.</p>
@@ -247,15 +256,14 @@ Since this is an iterative process, at the end of each wave we need to decide wh
 </div>
 </div>
 <p>We conclude by noting that in this workshop we dealt with stochasticity, but not with bimodality (i.e. when one can perform multiple repetitions at a given parameter set and find two distinct classes of behaviour. The most common example of bimodality is ‘take off vs die out’: if the initial number of infected people is low, the disease might infrequently find its way into the population, but blowing up on those rare circumstances it does). The calibration of stochastic models that can have a bimodal behaviour is addressed in Workshop 3.</p>
-
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="second-wave.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="secondwave.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dealing-with-bimodality.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

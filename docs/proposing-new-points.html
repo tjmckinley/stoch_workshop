@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="emulator-diagnostics.html"/>
-<link rel="next" href="second-wave.html"/>
+<link rel="next" href="secondwave.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -184,8 +184,16 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="implausibility.html"><a href="implausibility.html"><i class="fa fa-check"></i><b>6</b> Implausibility</a></li>
 <li class="chapter" data-level="7" data-path="emulator-diagnostics.html"><a href="emulator-diagnostics.html"><i class="fa fa-check"></i><b>7</b> Emulator diagnostics</a></li>
 <li class="chapter" data-level="8" data-path="proposing-new-points.html"><a href="proposing-new-points.html"><i class="fa fa-check"></i><b>8</b> Proposing new points</a></li>
-<li class="chapter" data-level="9" data-path="second-wave.html"><a href="second-wave.html"><i class="fa fa-check"></i><b>9</b> Second wave</a></li>
+<li class="chapter" data-level="9" data-path="secondwave.html"><a href="secondwave.html"><i class="fa fa-check"></i><b>9</b> Second wave</a></li>
 <li class="chapter" data-level="10" data-path="visualisation-of-the-non-implausible-space-by-wave.html"><a href="visualisation-of-the-non-implausible-space-by-wave.html"><i class="fa fa-check"></i><b>10</b> Visualisation of the non-implausible space by wave</a></li>
+<li class="chapter" data-level="11" data-path="dealing-with-bimodality.html"><a href="dealing-with-bimodality.html"><i class="fa fa-check"></i><b>11</b> Dealing with bimodality</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="dealing-with-bimodality.html"><a href="dealing-with-bimodality.html#bimodal_wave0---design-points"><i class="fa fa-check"></i><b>11.1</b> ‘bimodal_wave0’ - design points</a></li>
+<li class="chapter" data-level="11.2" data-path="dealing-with-bimodality.html"><a href="dealing-with-bimodality.html#bimodal-emulators"><i class="fa fa-check"></i><b>11.2</b> Bimodal Emulators</a></li>
+<li class="chapter" data-level="11.3" data-path="dealing-with-bimodality.html"><a href="dealing-with-bimodality.html#implausibility-1"><i class="fa fa-check"></i><b>11.3</b> Implausibility</a></li>
+<li class="chapter" data-level="11.4" data-path="dealing-with-bimodality.html"><a href="dealing-with-bimodality.html#emulator-diagnostics-1"><i class="fa fa-check"></i><b>11.4</b> Emulator diagnostics</a></li>
+<li class="chapter" data-level="11.5" data-path="dealing-with-bimodality.html"><a href="dealing-with-bimodality.html#proposing-new-points-1"><i class="fa fa-check"></i><b>11.5</b> Proposing new points</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -206,9 +214,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="proposing-new-points" class="section level1" number="8">
 <h1><span class="header-section-number">8</span> Proposing new points</h1>
 <p>To generate a set of non-implausible points, based on the trained emulators, we use the function <code>generate_new_runs</code>, exactly as in the deterministic case:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="proposing-new-points.html#cb22-1" aria-hidden="true" tabindex="-1"></a>new_points <span class="ot">&lt;-</span> <span class="fu">generate_new_runs</span>(stoch_emulators, <span class="dv">150</span>, targets)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="proposing-new-points.html#cb23-1" aria-hidden="true" tabindex="-1"></a>new_points <span class="ot">&lt;-</span> <span class="fu">generate_new_runs</span>(stoch_emulators, <span class="dv">150</span>, targets)</span></code></pre></div>
 <p>Here we generated <span class="math inline">\(150\)</span> points, since we are going to use <span class="math inline">\(100\)</span> of them to train new emulators and <span class="math inline">\(50\)</span> of them to validate new emulators (as done in the first wave). We can visualise the non-implausible space at the end of this first wave using <code>plot_wrap</code>:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="proposing-new-points.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_wrap</span>(new_points, ranges)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="proposing-new-points.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_wrap</span>(new_points, ranges)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-31-1.png" style="display: block; margin: auto;" /></p>
 <p>Here we see which parameters are more or less constrained at the end of the first wave. For example, it seems clear that low values of <span class="math inline">\(\gamma\)</span> cannot produce a match (cf. penultimate column). We can also deduce relationships between parameters: <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\epsilon\)</span> are an example of negatively-correlated parameters. If <span class="math inline">\(\beta_1\)</span> is large then <span class="math inline">\(\epsilon\)</span> needs to be small, and vice versa. Other parameters, such as <span class="math inline">\(\omega\)</span> or <span class="math inline">\(\mu\)</span>, are instead still spread out across their initial range.</p>
 <p>As shown in <a href="https://danny-sc.github.io/Tutorial_2/">Tutorial 2</a>, it is also possible to perform a full wave of emulation and history matching using the function <code>full_wave</code>, which needs the following information:</p>
@@ -224,7 +232,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="emulator-diagnostics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="second-wave.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="secondwave.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

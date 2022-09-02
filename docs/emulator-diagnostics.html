@@ -184,8 +184,16 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="implausibility.html"><a href="implausibility.html"><i class="fa fa-check"></i><b>6</b> Implausibility</a></li>
 <li class="chapter" data-level="7" data-path="emulator-diagnostics.html"><a href="emulator-diagnostics.html"><i class="fa fa-check"></i><b>7</b> Emulator diagnostics</a></li>
 <li class="chapter" data-level="8" data-path="proposing-new-points.html"><a href="proposing-new-points.html"><i class="fa fa-check"></i><b>8</b> Proposing new points</a></li>
-<li class="chapter" data-level="9" data-path="second-wave.html"><a href="second-wave.html"><i class="fa fa-check"></i><b>9</b> Second wave</a></li>
+<li class="chapter" data-level="9" data-path="secondwave.html"><a href="secondwave.html"><i class="fa fa-check"></i><b>9</b> Second wave</a></li>
 <li class="chapter" data-level="10" data-path="visualisation-of-the-non-implausible-space-by-wave.html"><a href="visualisation-of-the-non-implausible-space-by-wave.html"><i class="fa fa-check"></i><b>10</b> Visualisation of the non-implausible space by wave</a></li>
+<li class="chapter" data-level="11" data-path="dealing-with-bimodality.html"><a href="dealing-with-bimodality.html"><i class="fa fa-check"></i><b>11</b> Dealing with bimodality</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="dealing-with-bimodality.html"><a href="dealing-with-bimodality.html#bimodal_wave0---design-points"><i class="fa fa-check"></i><b>11.1</b> ‘bimodal_wave0’ - design points</a></li>
+<li class="chapter" data-level="11.2" data-path="dealing-with-bimodality.html"><a href="dealing-with-bimodality.html#bimodal-emulators"><i class="fa fa-check"></i><b>11.2</b> Bimodal Emulators</a></li>
+<li class="chapter" data-level="11.3" data-path="dealing-with-bimodality.html"><a href="dealing-with-bimodality.html#implausibility-1"><i class="fa fa-check"></i><b>11.3</b> Implausibility</a></li>
+<li class="chapter" data-level="11.4" data-path="dealing-with-bimodality.html"><a href="dealing-with-bimodality.html#emulator-diagnostics-1"><i class="fa fa-check"></i><b>11.4</b> Emulator diagnostics</a></li>
+<li class="chapter" data-level="11.5" data-path="dealing-with-bimodality.html"><a href="dealing-with-bimodality.html#proposing-new-points-1"><i class="fa fa-check"></i><b>11.5</b> Proposing new points</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -227,7 +235,7 @@ Finally, <strong>the third column</strong> gives the standardised errors of the 
 </div>
 </div></li>
 </ul>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="emulator-diagnostics.html#cb21-1" aria-hidden="true" tabindex="-1"></a>vd <span class="ot">&lt;-</span> <span class="fu">validation_diagnostics</span>(stoch_emulators<span class="sc">$</span>expectation, targets, all_valid, <span class="at">plt=</span><span class="cn">TRUE</span>, <span class="at">row=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="emulator-diagnostics.html#cb22-1" aria-hidden="true" tabindex="-1"></a>vd <span class="ot">&lt;-</span> <span class="fu">validation_diagnostics</span>(stoch_emulators<span class="sc">$</span>expectation, targets, all_valid, <span class="at">plt=</span><span class="cn">TRUE</span>, <span class="at">row=</span><span class="dv">2</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-29-1.png" style="display: block; margin: auto;" /><img src="_main_files/figure-html/unnamed-chunk-29-2.png" style="display: block; margin: auto;" /><img src="_main_files/figure-html/unnamed-chunk-29-3.png" style="display: block; margin: auto;" /><img src="_main_files/figure-html/unnamed-chunk-29-4.png" style="display: block; margin: auto;" /></p>
 <p>Note that by default <code>validation_diagnostics</code> groups the outputs in sets of three. Since here we have 8 outputs, we set the argument <code>row</code> to 2: this is not strictly necessary but improves the format of the grid of plots obtained. As in deterministic case, we can enlarge the <span class="math inline">\(\sigma\)</span> values of the mean emulators to obtain more conservative emulators, if needed. Based on the diagnostics above, all emulators perform quite well, so we won’t modify any <span class="math inline">\(\sigma\)</span> values here.</p>
 <p>Note that the output <code>vd</code> of the <code>validation_diagnostics</code> function is a dataframe containing all parameter sets in the validation dataset that fail at least one of the three diagnostics. This dataframe can be used to automate the validation step of the history matching process. For example, one can consider the diagnostic check to be successful if <code>vd</code> contains at most <span class="math inline">\(5\%\)</span> of all points in the validation dataset. In this way, the user is not required to manually inspect each validation diagnostic for each emulator at each wave of the process.</p>

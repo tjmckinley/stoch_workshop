@@ -309,24 +309,25 @@ for(i in 1:100) lines(0:200, solution[,1,i], col='black', lwd=0.3,
 
 
 
-
-
 <div class="panel panel-default"><div class="panel-heading"> Task </div><div class="panel-body"> 
-If you would like, familiarise yourself with the model. Investigate how the plots change as you change the values of the parameters.
-<infobutton id="displayTextunnamed-chunk-46" onclick="javascript:toggle('unnamed-chunk-46');">Show: R tip</infobutton>
 
-<div id="toggleTextunnamed-chunk-46" style="display: none"><div class="panel panel-default"><div class="panel-body">
+If you would like, familiarise yourself with the model. Investigate how the plots change as you change the values of the parameters.
+
+<infobutton id="displayTextunnamed-chunk-61" onclick="javascript:toggle('unnamed-chunk-61');">Show: R tip</infobutton>
+
+<div id="toggleTextunnamed-chunk-61" style="display: none"><div class="panel panel-default"><div class="panel-body">
+
 Copy the code below, modify the value of (some) parameters and run it.
 
 ```r
 example_params <- c(
-  b = 1/(76*365),
-  mu = 1/(76*365),
-  beta1 = 0.214, beta2 = 0.107, beta3 = 0.428,
-  epsilon = 1/7,
-  alpha = 1/50,
-  gamma = 1/14,
-  omega = 1/365
+  b = 1/(76*365),  # birth rate
+  mu = 1/(76*365),  # rate of death from other causes
+  beta1 = 0.214, beta2 = 0.107, beta3 = 0.428,  # infection rate between each infectious and susceptible individual
+  epsilon = 1/7,  # rate of becoming infectious after infection
+  alpha = 1/50,  # rate of death from the disease
+  gamma = 1/14,  # recovery rate
+  omega = 1/365  # rate at which immunity is lost following recovery
 )
 solution <- get_results(example_params, outs = c("I", "R"), 
                         times = c(25, 40, 100, 200), raw = TRUE)
@@ -334,7 +335,9 @@ plot(0:200, ylim=c(0,700), ty="n", xlab = "Time", ylab = "Number")
 for(j in 3:4) for(i in 1:100) lines(0:200, solution[,j,i], col=(3:4)[j-2], lwd=0.3)
 legend('topleft', legend = c('Infected', "Recovered"), lty = 1, 
        col = c(3,4), inset = c(0.05, 0.05))
-```</div></div></div> </div></div>
+```
+</div></div></div>
+ </div></div>
 
 
 <button id="displayTextunnamed-chunk-14" onclick="javascript:toggle('unnamed-chunk-14');">Show: Solution</button>
@@ -356,13 +359,16 @@ higher_beta_params <- c(
 higher_beta_solution <- get_results(higher_beta_params, outs = c("I", "R"), 
                                    times = c(25, 40, 100, 200), raw = TRUE)
 plot(0:200, ylim=c(0,700), ty="n", xlab = "Time", ylab = "Number")
-for(j in 3:4) for(i in 1:100) lines(0:200, higher_beta_solution[,j,i], col=(c("#E69F00","#CC79A7"))[j-2], lwd=0.3)
+for(j in 3:4) for(i in 1:100) lines(0:200, higher_beta_solution[,j,i], 
+                                    col=(c("#E69F00","#CC79A7"))[j-2], lwd=0.3)
 for(j in 3:4) for(i in 1:100) lines(0:200, solution[,j,i], col=(3:4)[j-2], lwd=0.3)
-legend('topleft', legend = c('Infected', "Recovered", "Infected - higher beta", "New Recovered - higher beta"), lty = 1, 
+legend('topleft', legend = c('Infected', "Recovered", "Infected - higher beta", 
+                             "New Recovered - higher beta"), lty = 1, 
        col = c(3,4,"#E69F00","#CC79A7"), inset = c(0.01, 0.01))
 ```
 
-<img src="_main_files/figure-html/unnamed-chunk-48-1.png" style="display: block; margin: auto;" />
+<img src="_main_files/figure-html/unnamed-chunk-63-1.png" style="display: block; margin: auto;" />
+
 Comparing this with the plot produced before the task, we see that the peaks of recovered and infectious individuals have now increased, as expected. 
 What happens when a lower value of the recovery rate $\gamma$ is used?
 
@@ -382,11 +388,13 @@ plot(0:200, ylim=c(0,700), ty="n", xlab = "Time", ylab = "Number")
 for(j in 3:4) for(i in 1:100) lines(0:200, smaller_gamma_solution[,j,i], 
                                     col=(c("#E69F00","#CC79A7"))[j-2], lwd=0.3)
 for(j in 3:4) for(i in 1:100) lines(0:200, solution[,j,i], col=(3:4)[j-2], lwd=0.3)
-legend('topleft', legend = c('Infected', "Recovered", "Infected - smaller gamma", "Recovered - smaller gamma"), lty = 1, 
+legend('topleft', legend = c('Infected', "Recovered", "Infected - smaller gamma", 
+                             "Recovered - smaller gamma"), lty = 1, 
        col = c(3,4,"#E69F00","#CC79A7"), inset = c(0.01, 0.01))
 ```
 
-<img src="_main_files/figure-html/unnamed-chunk-49-1.png" style="display: block; margin: auto;" />
+<img src="_main_files/figure-html/unnamed-chunk-64-1.png" style="display: block; margin: auto;" />
+
 As one expects, this causes the peak of infectious individuals to increase.
 Finally, what happens when we increase the rate at which immunity is lost $\omega$?
   
@@ -407,12 +415,15 @@ plot(0:200, ylim=c(0,700), ty="n", xlab = "Time", ylab = "Number")
 for(j in 3:4) for(i in 1:100) lines(0:200, higher_omega_solution[,j,i], 
                                     col=(c("#E69F00","#CC79A7"))[j-2], lwd=0.3)
 for(j in 3:4) for(i in 1:100) lines(0:200, solution[,j,i], col=(3:4)[j-2], lwd=0.3)
-legend('topleft', legend = c('Infected', "Recovered", "Infected - higher omega", "Recovered - higher omega"), lty = 1, 
+legend('topleft', legend = c('Infected', "Recovered", "Infected - higher omega", 
+                             "Recovered - higher omega"), lty = 1, 
        col = c(3,4,"#E69F00","#CC79A7"), inset = c(0.05, 0.05))
 ```
 
-<img src="_main_files/figure-html/unnamed-chunk-50-1.png" style="display: block; margin: auto;" />
+<img src="_main_files/figure-html/unnamed-chunk-65-1.png" style="display: block; margin: auto;" />
+
 This causes the peak of recovered individuals to slightly decrease.</div></div></div>
+
 
 # 'wave0' - parameter ranges, targets and design points
 In this section we set up the emulation task, defining the input parameter ranges, the calibration targets and all the data necessary to build the first wave of emulators. Note that, for the sake of clarity, in this workshop we will adopt the word 'data' only when referring to the set of runs of the model that are used to train emulators. Empirical observations, that would inform our choice of targets if we were modelling a real-world scenario, will instead be referred to as 'observations'.
@@ -464,8 +475,8 @@ Note that in `initial_LHS` each parameter is distributed on $[0,1]$. This is not
 
 ```r
 initial_points <- setNames(data.frame(t(apply(initial_LHS, 1, 
-                                              function(x) x * purrr::map_dbl(ranges, diff) + 
-                                              purrr::map_dbl(ranges, ~.[[1]])))), names(ranges))
+                                        function(x) x * purrr::map_dbl(ranges, diff) + 
+                                        purrr::map_dbl(ranges, ~.[[1]])))), names(ranges))
 ```
 
 We then run the model for the parameter sets in `initial_points` through the `get_results` function, specifying that we are interested in the outputs for $I$ and $R$ at times $t=25, 40, 100, 200$.
@@ -573,7 +584,7 @@ emulator_plot(stoch_emulators$expectation$I40, params = c('epsilon', 'alpha'),
    geom_point(data = all_training[1,], aes(x = epsilon, y = alpha))
 ```
 
-<img src="_main_files/figure-html/unnamed-chunk-52-1.png" style="display: block; margin: auto;" />
+<img src="_main_files/figure-html/unnamed-chunk-67-1.png" style="display: block; margin: auto;" />
 
 We see that the black point in the dark blue area, corresponding to the first point in `all_training`, does not have variance zero. This is because the mean emulator is trying to predict the 'true' mean at the point, but it has only been given a sample mean, which it cannot assume is equal to the 'true' mean. The emulator internally compensates for this incomplete information, resulting in the variance not being zero, even at points in the training set. This compensation also means that we can work with different numbers of replicates at different parameter sets. In general, for each training/validation parameter set, we should use as many repetitions as is feasible given the model complexity. More repetitions will provide a better estimate of the variance, which in turn allows to train more accurate mean emulators. If a model is relatively fast, then it is worth doing 50-100 repetitions per parameter set (as in this workshop); if it is slower, then we can work with fewer repetitions (even just 5-10 per parameter set). This applies to different regions of the parameter space within a single model, too: if one part of the parameter space is much slower to run (e.g. parameter sets with higher beta values, which tend to produce more infections, slowing down agent-based models), then we could run fewer repetitions in those parts of parameter space.  </div></div>
  
@@ -620,7 +631,7 @@ emulator_plot(stoch_emulators, plot_type = 'nimp', targets = targets,
               cb=T) +geom_point(aes(x=1/7, y=1/50), size=3)
 ```
 
-<img src="_main_files/figure-html/unnamed-chunk-53-1.png" style="display: block; margin: auto;" />
+<img src="_main_files/figure-html/unnamed-chunk-68-1.png" style="display: block; margin: auto;" />
 The plot shows what we expected: when $\epsilon$ and $\alpha$ are equal to their values in `chosen_params`, the implausibility measure is below the threshold $3$ (cf. black point in the box). </div></div></div>
 
 # Emulator diagnostics
@@ -682,7 +693,7 @@ As shown in [Tutorial 2](https://danny-sc.github.io/Tutorial_2/), it is also pos
 
 - The targets: for each of the model outputs to emulate, we need a pair (val, sigma) or (min, max) that will be used to evaluate implausibility.
 
-# Second wave
+# Second wave {#secondwave}
 
 <div class="panel panel-default"><div class="panel-body"> 
 To perform a second wave of history matching and emulation we follow the same procedure as in the previous sections, with two caveats. First, since the parameter sets in `new_points` tend to lie in a small region inside the original input space, we will train the new emulators only on the non-implausible region found in wave one. This can be done simply setting the argument `check.ranges` to `TRUE` in the function `variance_emulator_from_data`. </div></div>
@@ -736,7 +747,8 @@ The first visualisation, obtained through the function `wave_points`, shows the 
 
 
 ```r
-wave_points(list(initial_points, new_points, new_new_points), input_names = names(ranges)[4:8]) +
+wave_points(list(initial_points, new_points, new_new_points), 
+            input_names = names(ranges)[4:8]) +
             ggplot2::theme(axis.text.x = ggplot2::element_text(size = 6))
 ```
 
@@ -774,7 +786,7 @@ We are now ready to compare the performance of parameter sets at the end of each
 simulator_plot(all_aggregated, targets, barcol = "grey")
 ```
 
-<img src="_main_files/figure-html/unnamed-chunk-55-1.png" style="display: block; margin: auto;" /> </div></div>
+<img src="_main_files/figure-html/unnamed-chunk-70-1.png" style="display: block; margin: auto;" /> </div></div>
 
 Note that in this call we set `barcol="white"` in order to have the target intervals in white, instead of black. This plot clearly shows that parameter sets at the end of the first and second wave perform better than the initial set of points. 
 
@@ -799,6 +811,324 @@ Since this is an iterative process, at the end of each wave we need to decide wh
 We conclude by noting that in this workshop we dealt with stochasticity, but not with bimodality (i.e. when one can perform multiple repetitions at a given parameter set and find two distinct classes of behaviour. The most common example of bimodality is ‘take off vs die out’: if the initial number of infected people is low, the disease might infrequently find its way into the population, but blowing up on those rare circumstances it does). The calibration of stochastic models that can have a bimodal behaviour is addressed in Workshop 3.
 
 
+# Dealing with bimodality
+
+In the previous sections of this workshop we dealt with stochasticity, but not with bimodality, i.e. when one can perform multiple repetitions at a given parameter set and find two distinct classes of behaviour. This is because our SEIRS model did not show any bimodal behaviour in the outputs for the times considered, i.e. for $t$ up to $200$. Let us suppose now that we are interested also in later times. Running the model on `chosen_params` using `get_results` up to time $t=500$ and plotting the results for "I" and "R" we obtain:
+
+
+```r
+solution <- get_results(chosen_params, outs = c("I", "R"), 
+                        times = c(25, 40, 100, 200, 300, 350, 500), raw = TRUE)
+plot(0:500, ylim=c(0,700), ty="n", xlab = "Time", ylab = "Number")
+for(j in 3:4) for(i in 1:100) lines(0:500, solution[,j,i], col=(3:4)[j-2], lwd=0.3)
+legend('topleft', legend = c('Infected', "Recovered"), lty = 1, 
+       col = c(3,4), inset = c(0.05, 0.05))
+```
+
+<img src="_main_files/figure-html/unnamed-chunk-42-1.png" style="display: block; margin: auto;" />
+
+The most common example of bimodality, ‘take off vs die out’, now enters the picture: from time $t=250$ on, there are a large number of trajectories in green that have zero infected individuals (note the horizontal green line) and a few trajectories where transmission takes off again, producing a second wave of the epidemic (around $t=300$). 
+
+<div class="panel panel-default"><div class="panel-heading"> Task </div><div class="panel-body"> 
+Investigate how different parameter sets give rise to different levels of bimodality. 
+
+<infobutton id="displayTextunnamed-chunk-71" onclick="javascript:toggle('unnamed-chunk-71');">Show: R tip</infobutton>
+
+<div id="toggleTextunnamed-chunk-71" style="display: none"><div class="panel panel-default"><div class="panel-body">
+
+Copy the code below, modify the value of (some) parameters and run it.
+
+```r
+example_params <- c(
+  b = 1/(76*365),  # birth rate
+  mu = 1/(76*365),  # rate of death from other causes
+  beta1 = 0.214, beta2 = 0.107, beta3 = 0.428,  # infection rate between each infectious and susceptible individual
+  epsilon = 1/7,  # rate of becoming infectious after infection
+  alpha = 1/50,  # rate of death from the disease
+  gamma = 1/14,  # recovery rate
+  omega = 1/365  # rate at which immunity is lost following recovery
+)
+solution <- get_results(example_params, outs = c("I", "R"), 
+                        times = c(25, 40, 100, 200), raw = TRUE)
+plot(0:200, ylim=c(0,700), ty="n", xlab = "Time", ylab = "Number")
+for(j in 3:4) for(i in 1:100) lines(0:200, solution[,j,i], col=(3:4)[j-2], lwd=0.3)
+legend('topleft', legend = c('Infected', "Recovered"), lty = 1, 
+       col = c(3,4), inset = c(0.05, 0.05))
+```
+</div></div></div>
+ </div></div>
+
+
+<button id="displayTextunnamed-chunk-44" onclick="javascript:toggle('unnamed-chunk-44');">Show: Solution</button>
+
+<div id="toggleTextunnamed-chunk-44" style="display: none"><div class="panel panel-default"><div class="panel-heading panel-heading1"> Solution </div><div class="panel-body">
+Let us see what happens when we simulate a higher rate of infection between each infectious and susceptible:
+
+```r
+higher_beta_params <- c(
+  b = 1/(76*365),
+  mu = 1/(76*365),
+  beta1 = 0.3, beta2 = 0.1, beta3 = 0.5,
+  sigma = 1/7,
+  alpha = 1/50,
+  gamma = 1/14,
+  omega = 1/365
+)
+higher_beta_solution <- get_results(higher_beta_params, outs = c("I", "R"), 
+                        times = c(25, 40, 100, 200, 300, 350, 500), raw = TRUE)
+plot(0:500, ylim=c(0,700), ty="n", xlab = "Time", ylab = "Number")
+for(j in 3:4) for(i in 1:100) lines(0:500, solution[,j,i], col=(3:4)[j-2], lwd=0.3)
+for(j in 3:4) for(i in 1:100) lines(0:500, higher_beta_solution[,j,i], 
+                                    col=(c("#E69F00","#CC79A7"))[j-2], lwd=0.3)
+legend('topleft', legend = c('Infected', "Recovered", "Infected - higher beta", 
+                             "Recovered - higher beta"), lty = 1, 
+       col = c(3,4,"#E69F00","#CC79A7"), inset = c(0.01, 0.01))
+```
+
+<img src="_main_files/figure-html/unnamed-chunk-73-1.png" style="display: block; margin: auto;" />
+
+We see that the peaks of recovered and infectious individuals during the first wave have now increased, as expected. Also note how increasing the transmission rate reduced the role of bimodality (very few trajectories in orange take off after the first wave): the fact that more individuals get now infected during the first wave (around $t=50$), makes the chances of a second "wave" around time $t=300$ lower. </div></div></div>
+
+In the following subsections we will describe how to deal with bimodality when performing history matching with emulation. Since most parts of the process are very similar to what we have seen already for stochastic models, we will only discuss the areas where the process changes.
+
+## 'bimodal_wave0' - design points
+
+While the parameters' ranges are the same as before, we need to redefine the targets' list, adding values for times later than $t=200$:
+
+
+```r
+bimodal_targets <- list(
+  I25 = list(val = 115.88, sigma = 5.79),
+  I40 = list(val = 137.84, sigma = 6.89),
+  I100 = list(val = 26.34, sigma = 1.317),
+  I200 = list(val = 0.68, sigma = 0.034),
+  I300 = list(val = 29.55, sigma = 1.48),
+  I350 = list(val = 68.89, sigma = 3.44),
+  R25 = list(val = 125.12, sigma = 6.26),
+  R40 = list(val = 256.80, sigma = 12.84),
+  R100 = list(val = 538.99, sigma = 26.95),
+  R200 = list(val = 444.23, sigma = 22.21),
+  R300 = list(val = 371.08, sigma = 15.85),
+  R350 = list(val = 549.42, sigma = 27.47)
+)
+```
+
+Note that these are the same exact targets chosen for the deterministic workshop, [Workshop 1](https://danny-sc.github.io/determ_workshop/index.html).
+
+Since we are now interested in times after $t=200$ too, we need to rerun the parameter sets in `initial_points`, obtaining `bimodal_initial_results`. We then bind all elements in `bimodal_initial_results` to obtain a dataframe `bimodal_wave0`, which we split into a training and a validation set:
+
+
+```r
+bimodal_initial_results <- list()
+for (i in 1:nrow(initial_points)) {
+  model_out <- get_results(unlist(initial_points[i,]), nreps = 50, outs = c("I", "R"), 
+                           times = c(25, 40, 100, 200, 300, 350, 450))
+  bimodal_initial_results[[i]] <- model_out
+}
+bimodal_wave0 <- data.frame(do.call('rbind', bimodal_initial_results))
+bimodal_all_training <- bimodal_wave0[1:5000,]
+bimodal_all_valid <- bimodal_wave0[5001:7500,]
+bimodal_output_names <- c("I25", "I40", "I100", "I200", "I300", "I350", "I450", 
+                          "R25", "R40", "R100", "R200", "R300", "R350", "R450")
+```
+
+## Bimodal Emulators
+
+<div class="panel panel-default"><div class="panel-body"> 
+To train bimodal emulators we use the function `bimodal_emulator_from_data`, which requires the training data, the names of the outputs to emulate, and the ranges of the parameters:
+
+```r
+bimodal_emulators <- bimodal_emulator_from_data(bimodal_all_training, 
+                                                bimodal_output_names, ranges)
+```
+
+Behind the scenes, this function does the following:
+
+- First it looks at the provided training data and identifies which of the outputs are bimodal. 
+
+- For the outputs where bimodality is found, the repetitions at each parameter set are clustered into two subsets, based on the mode they belong to.
+
+- For outputs without bimodality, stochastic emulators are trained as before. For outputs with bimodality, variance and mean emulators are trained separately for each of the two modes. To access the mean emulators for the first mode, we type `bimodal_emulators$mode1$expectation`, and to access the variance emulators for the second mode we type `bimodal_emulators$mode2$variance`. 
+
+- Finally, an emulator for the proportion of points in each mode is also trained (this is a single emulator, as in the deterministic case). This emulator can be accessed by typing `bimodal_emulators$prop` and will be referred to as proportion emulator.
+
+Let us now plot the expectation of the mean emulator of $R350$ and similarly for each mode: 
+
+```r
+emulator_plot(bimodal_emulators$mode1$expectation$R350, params = c('alpha', 'epsilon'))
+```
+
+<img src="_main_files/figure-html/unnamed-chunk-75-1.png" style="display: block; margin: auto;" />
+
+```r
+emulator_plot(bimodal_emulators$mode2$expectation$R350, params = c('alpha', 'epsilon'))
+```
+
+<img src="_main_files/figure-html/unnamed-chunk-75-2.png" style="display: block; margin: auto;" />
+
+We immediately notice that there is large difference between the two plots, with mode 2 containing higher values than mode 1. This indicates that mode 1 is the one where the infection dies out.
+
+It is also instructive to plot the expectation of the proportion emulator:
+
+```r
+emulator_plot(bimodal_emulators$prop, params = c('alpha', 'epsilon'))
+```
+
+<img src="_main_files/figure-html/unnamed-chunk-76-1.png" style="display: block; margin: auto;" />
+
+The plot shows that at points where epsilon (rate of becoming infectious) is high, the first mode, where the infection dies out, dominates. However, from the plot it is also evident that there is always a
+substantial risk of the disease dying out, since the proportion of points in the first mode never drops below $0.5$.
+
+Let us conclude this section with a plot showing the predictions and relative uncertainties for mode 1 and mode 2 for the $I$ and $R$ outputs. We first create a dataframe with the parameter set `chosen_params` and extract the emulators' predictions (with `get_exp`) and uncertainties (with `get_cov`) at such parameter set, for each mode:
+  
+
+```r
+chosen_df <- data.frame(b = 1/(76*365),
+                         mu = 1/(76*365),
+                         beta1 = 0.214, beta2 = 0.107, beta3 = 0.428,
+                         epsilon = 1/7,
+                         alpha = 1/50,
+                         gamma = 1/14,
+                         omega = 1/365
+)
+em_preds1 <- purrr::map_dbl(bimodal_emulators$mode1$expectation, ~.$get_exp(chosen_df))
+em_vars1 <- purrr::map_dbl(bimodal_emulators$mode1$expectation, ~.$get_cov(chosen_df))
+em_preds2 <- purrr::map_dbl(bimodal_emulators$mode2$expectation, ~.$get_exp(chosen_df))
+em_vars2 <- purrr::map_dbl(bimodal_emulators$mode2$expectation, ~.$get_cov(chosen_df))
+```
+We then plot: 
+- the solutions for "I" and "R" at `chosen_params`, 
+- unbroken red and black lines representing the mode 1 and mode 2 expectations for the $I$ and $R$ outputs,
+- dotted red and black lines representing $3$-sigma upper and lower bounds for those expectations.
+
+```r
+plot(0:500, ylim=c(0,700), ty="n", xlab = "Time", ylab = "Number")
+for(j in 3:4) for(i in 1:100) lines(0:500, solution[,j,i], col=(3:4)[j-2], lwd=0.3)
+lines(c(25, 40, 100, 200, 300, 350, 450), em_preds1[1:7])
+lines(c(25, 40, 100, 200, 300, 350, 450), em_preds1[8:14])
+lines(c(25, 40, 100, 200, 300, 350, 450), em_preds1[1:7]-3*sqrt(em_vars1[1:7]), lty = 2)
+lines(c(25, 40, 100, 200, 300, 350, 450), em_preds1[1:7]+3*sqrt(em_vars1[1:7]), lty = 2)
+lines(c(25, 40, 100, 200, 300, 350, 450), em_preds1[8:14]-3*sqrt(em_vars1[8:14]), lty = 2)
+lines(c(25, 40, 100, 200, 300, 350, 450), em_preds1[8:14]+3*sqrt(em_vars1[8:14]), lty = 2)
+lines(c(25, 40, 100, 200, 300, 350, 450), em_preds2[1:7], col = 'red')
+lines(c(25, 40, 100, 200, 300, 350, 450), em_preds2[8:14], col = 'red')
+lines(c(25, 40, 100, 200, 300, 350, 450), em_preds2[1:7]-3*sqrt(em_vars1[1:7]), 
+      lty = 2, col = 'red')
+lines(c(25, 40, 100, 200, 300, 350, 450), em_preds2[1:7]+3*sqrt(em_vars1[1:7]), 
+      lty = 2, col = 'red')
+lines(c(25, 40, 100, 200, 300, 350, 450), em_preds2[8:14]-3*sqrt(em_vars1[8:14]), 
+      lty = 2, col = 'red')
+lines(c(25, 40, 100, 200, 300, 350, 450), em_preds2[8:14]+3*sqrt(em_vars1[8:14]), 
+      lty = 2, col = 'red')
+legend('topleft', legend = c('Recovered', "Infected"), lty = 1, col = c(3,4), 
+       inset = c(0.05, 0.05))
+```
+
+<img src="_main_files/figure-html/unnamed-chunk-78-1.png" style="display: block; margin: auto;" />
+
+We clearly see how `bimodal_emulators_from_data` captures the bimodal structure of the outputs. </div></div>
+
+<div class="panel panel-default"><div class="panel-heading"> Task </div><div class="panel-body"> 
+Confirm that mode 1 is where the infection dies out by comparing the plots of the expectation of the mean emulator for $I300$ for both modes. </div></div>
+
+
+<button id="displayTextunnamed-chunk-49" onclick="javascript:toggle('unnamed-chunk-49');">Show: Solution</button>
+
+<div id="toggleTextunnamed-chunk-49" style="display: none"><div class="panel panel-default"><div class="panel-heading panel-heading1"> Solution </div><div class="panel-body">
+We use `emulator_plot` to produce the suggested plots:
+
+```r
+emulator_plot(bimodal_emulators$mode1$expectation$I300, params = c('alpha', 'epsilon'))
+```
+
+<img src="_main_files/figure-html/unnamed-chunk-79-1.png" style="display: block; margin: auto;" />
+
+```r
+emulator_plot(bimodal_emulators$mode2$expectation$I300, params = c('alpha', 'epsilon'))
+```
+
+<img src="_main_files/figure-html/unnamed-chunk-79-2.png" style="display: block; margin: auto;" />
+
+The values in the plot for mode 1 are clearly lower than those for mode 2: this reflects the fact that mode 2 experiences a second wave around $t=300$, while in mode 1 the infection dies out after the first wave (around $t=40$). </div></div></div>
+
+
+## Implausibility 
+
+<div class="panel panel-default"><div class="panel-body"> 
+
+Since we are now in a bimodal setting, we want to regard a point as non-implausible for a given target if it is valid with respect to either mode. This is the default behaviour of the package, when dealing with bimodal emulators. 
+
+For a given output and a given point, the implausibility for mode 1 and the implausibility for mode 2 are calculated, and the minimum of them is taken. The maximum (or second-maximum, third-maximum etc) of this collection of minimised implausibilities is then selected, depending on the user choice. For example, to plot the maximum of these minimised implausibilities, we set `plot_type` to `nimp`:
+
+```r
+emulator_plot(subset_emulators(bimodal_emulators, bimodal_output_names[-c(7,14)]), 
+              plot_type = 'nimp', targets = bimodal_targets, params = c('alpha', 'epsilon'))
+```
+
+<img src="_main_files/figure-html/unnamed-chunk-80-1.png" style="display: block; margin: auto;" />
+
+Here we used the function `subset_emulators` to remove the emulators for the outputs at $t=450$ (the seventh and fourteenth emulators), for which we did not set targets (to keep the symmetry with the deterministic case). </div></div>
+
+<div class="panel panel-default"><div class="panel-heading"> Task </div><div class="panel-body"> 
+Set the argument `plot_type` to `imp` to produce implausibility plots for each output, for mode 1 and mode 2. Which implausibility plots are the same for each mode, and which are different? Why? </div></div>
+
+<button id="displayTextunnamed-chunk-52" onclick="javascript:toggle('unnamed-chunk-52');">Show: Solution</button>
+
+<div id="toggleTextunnamed-chunk-52" style="display: none"><div class="panel panel-default"><div class="panel-heading panel-heading1"> Solution </div><div class="panel-body">
+Setting `plot_type='imp'` in `emulator_plot` and passing it either `subset_emulators(bimodal_emulators, output_names[-c(7,14)])$mode1` or `subset_emulators(bimodal_emulators, output_names[-c(7,14)])$mode2`, we get:
+
+```r
+emulator_plot(subset_emulators(bimodal_emulators, bimodal_output_names[-c(7,14)])$mode1, plot_type = 'imp', 
+              targets = bimodal_targets, params = c('alpha', 'epsilon'))
+```
+
+<img src="_main_files/figure-html/unnamed-chunk-81-1.png" style="display: block; margin: auto;" />
+
+```r
+emulator_plot(subset_emulators(bimodal_emulators, bimodal_output_names[-c(7,14)])$mode2, plot_type = 'imp', 
+              targets = bimodal_targets, params = c('alpha', 'epsilon'))
+```
+
+<img src="_main_files/figure-html/unnamed-chunk-81-2.png" style="display: block; margin: auto;" />
+The implausibility plots are the same between modes for early times ($t=25,40,100$) and different between modes for later outputs. This makes sense, since bimodality, which enters the picture after the first wave, does not play a role in earlier times. </div></div></div>
+
+
+## Emulator diagnostics
+
+As before, the function `validation_diagnostics` can be used to get three diagnostics for each emulated output.
+
+
+```r
+vd <- validation_diagnostics(subset_emulators(bimodal_emulators, bimodal_output_names[-c(7,14)]), 
+                       bimodal_targets, bimodal_all_valid, plt=TRUE)
+```
+
+<img src="_main_files/figure-html/unnamed-chunk-53-1.png" style="display: block; margin: auto;" /><img src="_main_files/figure-html/unnamed-chunk-53-2.png" style="display: block; margin: auto;" /><img src="_main_files/figure-html/unnamed-chunk-53-3.png" style="display: block; margin: auto;" /><img src="_main_files/figure-html/unnamed-chunk-53-4.png" style="display: block; margin: auto;" />
+
+<div class="panel panel-default"><div class="panel-body"> 
+
+You may have noticed that in the first column we have more points plotted than we have validation points. This is because we do diagnostics for each mode for each output, i.e. we compare the predictions of the mean emulators for mode 1 and mode 2 with the model output values, which are also clustered in two subsets, due to bimodality. In fact, for $I350$ you can see the mode separation in the left plot (some runs are concentrated around zero and the rest are all above 15). Similarly, for $I200$ you can distinguish the two modes by the step change in uncertainty (points on the left, near zero, have smaller intervals than points more on the right). </div></div>
+
+As in deterministic case, one can enlarge the $\sigma$ values to obtain more conservative emulators, if needed. For example,  to double the $\sigma$ value for the mean emulators for $I200$ in both modes we would type:
+
+
+```r
+bimodal_emulators$mode1$expectation$I200 <- bimodal_emulators$mode1$expectation$I200$mult_sigma(2)
+bimodal_emulators$mode2$expectation$I200 <- bimodal_emulators$mode2$expectation$I200$mult_sigma(2)
+```
+
+
+## Proposing new points
+
+Generating a set of non-implausible points, based on the trained emulators, is done in exactly the same way as it was in Section, using the function `generate_new_runs`. In this case we need to use the function `subset_emulators` to remove the emulators for the outputs at $t=450$ (the seventh and fourteenth emulators), for which we did not set targets: 
+
+
+```r
+new_points <- generate_new_runs(subset_emulators(bimodal_emulators, 
+                                bimodal_output_names[-c(7,14)]), 200, bimodal_targets, nth=1)
+```
+
+Similarly, performing the second wave is done in the same as it was in Section (\@ref(secondwave)), replacing `variance_emulator_from_data` with `bimodal_emulator_from_data`.
 
 <!--chapter:end:index.Rmd-->
 
