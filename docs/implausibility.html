@@ -183,7 +183,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6" data-path="implausibility.html"><a href="implausibility.html"><i class="fa fa-check"></i><b>6</b> Implausibility</a></li>
 <li class="chapter" data-level="7" data-path="emulator-diagnostics.html"><a href="emulator-diagnostics.html"><i class="fa fa-check"></i><b>7</b> Emulator diagnostics</a></li>
-<li class="chapter" data-level="8" data-path="proposing-new-points.html"><a href="proposing-new-points.html"><i class="fa fa-check"></i><b>8</b> Proposing new points</a></li>
+<li class="chapter" data-level="8" data-path="propnewpoints.html"><a href="propnewpoints.html"><i class="fa fa-check"></i><b>8</b> Proposing new points</a></li>
 <li class="chapter" data-level="9" data-path="secondwave.html"><a href="secondwave.html"><i class="fa fa-check"></i><b>9</b> Second wave</a></li>
 <li class="chapter" data-level="10" data-path="visualisation-of-the-non-implausible-space-by-wave.html"><a href="visualisation-of-the-non-implausible-space-by-wave.html"><i class="fa fa-check"></i><b>10</b> Visualisation of the non-implausible space by wave</a></li>
 <li class="chapter" data-level="11" data-path="dealing-with-bimodality.html"><a href="dealing-with-bimodality.html"><i class="fa fa-check"></i><b>11</b> Dealing with bimodality</a>
@@ -192,7 +192,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.2" data-path="dealing-with-bimodality.html"><a href="dealing-with-bimodality.html#bimodal-emulators"><i class="fa fa-check"></i><b>11.2</b> Bimodal Emulators</a></li>
 <li class="chapter" data-level="11.3" data-path="dealing-with-bimodality.html"><a href="dealing-with-bimodality.html#implausibility-1"><i class="fa fa-check"></i><b>11.3</b> Implausibility</a></li>
 <li class="chapter" data-level="11.4" data-path="dealing-with-bimodality.html"><a href="dealing-with-bimodality.html#emulator-diagnostics-1"><i class="fa fa-check"></i><b>11.4</b> Emulator diagnostics</a></li>
-<li class="chapter" data-level="11.5" data-path="dealing-with-bimodality.html"><a href="dealing-with-bimodality.html#proposing-new-points-1"><i class="fa fa-check"></i><b>11.5</b> Proposing new points</a></li>
+<li class="chapter" data-level="11.5" data-path="dealing-with-bimodality.html"><a href="dealing-with-bimodality.html#proposing-new-points"><i class="fa fa-check"></i><b>11.5</b> Proposing new points</a></li>
 </ul></li>
 </ul>
 
@@ -213,13 +213,13 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="implausibility" class="section level1" number="6">
 <h1><span class="header-section-number">6</span> Implausibility</h1>
-<p>We will first briefly review the definition of implausibility measure. For a given model output and a given target, the implausibility measures the difference between the emulator output and the target, taking into account all sources of uncertainty. For a parameter set <span class="math inline">\(x\)</span>, the general form for the implausibility <span class="math inline">\(\text{Imp}(x)\)</span> is</p>
-<p><span class="math display">\[\text{Imp}(x) = \frac{|f(x)-z|}{\sqrt{V_0 + V_c(x)+V_s+V_m}},\]</span></p>
-<p>where <span class="math inline">\(f(x)\)</span> is the emulator output, <span class="math inline">\(z\)</span> the target, and the terms in the denominator refer to various forms of uncertainty. In particular</p>
+<p>We will first briefly review the definition of an implausibility measure. For a given stochastic model output and a given target, the implausibility measures the difference between the output and the target, taking into account all sources of uncertainty. For a parameter set <span class="math inline">\(x\)</span>, a particular choice of implausibility, useful for either matching to the mean of the stochastic model, or its spread of possible values, is:</p>
+<p><span class="math display">\[\text{Imp}(x) = \frac{|\text{E}[m(x)]-z|}{\sqrt{V_0 + V_c(x)+V_s(x)+V_m}},\]</span></p>
+<p>where <span class="math inline">\(\text{E}[m(x)]\)</span> is the expected value of the mean of the stochastic model, <span class="math inline">\(z\)</span> the target, and the terms in the denominator refer to various forms of uncertainty. In particular</p>
 <ul>
 <li><span class="math inline">\(V_0\)</span> is the variance associated with the observation uncertainty;</li>
 <li><span class="math inline">\(V_c(x)\)</span> refers to the uncertainty one introduces when using the emulator output instead of the model output itself;</li>
-<li><span class="math inline">\(V_s\)</span> is the ensemble variability and represents the stochastic nature of the model;</li>
+<li><span class="math inline">\(V_s(x)\)</span> is the ensemble variability and represents the stochastic nature of the model. This term is used to create an appropriate representation of the uncertainty on either the mean or the set of possible realisations of the stochastic model.</li>
 <li><span class="math inline">\(V_m\)</span> is the model discrepancy, accounting for possible mismatches between the model and reality.</li>
 </ul>
 <p>Since in this case study we want to emulate our model, without reference to a real-life analogue, the model represents the reality perfectly. For this reason we have <span class="math inline">\(V_m=0\)</span>. The term <span class="math inline">\(V_s\)</span>, which was zero when we worked on the deterministic SEIRS model (<a href="https://danny-sc.github.io/determ_workshop/index.html">Workshop 1</a>), is now non-zero, in order to account for the stochasticity of the model.</p>
@@ -250,7 +250,7 @@ Solution
 <span id="cb21-2"><a href="implausibility.html#cb21-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">params =</span> <span class="fu">c</span>(<span class="st">&#39;epsilon&#39;</span>, <span class="st">&#39;alpha&#39;</span>),</span>
 <span id="cb21-3"><a href="implausibility.html#cb21-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">fixed_vals =</span> chosen_params[<span class="sc">!</span><span class="fu">names</span>(chosen_params) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&#39;epsilon&#39;</span>, <span class="st">&#39;alpha&#39;</span>)], </span>
 <span id="cb21-4"><a href="implausibility.html#cb21-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">cb=</span>T) <span class="sc">+</span><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">7</span>, <span class="at">y=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">50</span>), <span class="at">size=</span><span class="dv">3</span>)</span></code></pre></div>
-<img src="_main_files/figure-html/unnamed-chunk-68-1.png" style="display: block; margin: auto;" />
+<img src="_main_files/figure-html/unnamed-chunk-70-1.png" style="display: block; margin: auto;" />
 The plot shows what we expected: when <span class="math inline">\(\epsilon\)</span> and <span class="math inline">\(\alpha\)</span> are equal to their values in <code>chosen_params</code>, the implausibility measure is below the threshold <span class="math inline">\(3\)</span> (cf. black point in the box).
 </div>
 </div>

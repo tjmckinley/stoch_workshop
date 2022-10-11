@@ -10,7 +10,7 @@ brief-recap-on-the-structure-of-an-emulator
 stochastic-emulators
 implausibility
 emulator-diagnostics
-proposing-new-points
+propnewpoints
 secondwave
 visualisation-of-the-non-implausible-space-by-wave
 dealing-with-bimodality
@@ -18,4 +18,4 @@ bimodal_wave0---design-points
 bimodal-emulators
 implausibility-1
 emulator-diagnostics-1
-proposing-new-points-1
+proposing-new-points

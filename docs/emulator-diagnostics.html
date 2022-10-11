@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="implausibility.html"/>
-<link rel="next" href="proposing-new-points.html"/>
+<link rel="next" href="propnewpoints.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -183,7 +183,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6" data-path="implausibility.html"><a href="implausibility.html"><i class="fa fa-check"></i><b>6</b> Implausibility</a></li>
 <li class="chapter" data-level="7" data-path="emulator-diagnostics.html"><a href="emulator-diagnostics.html"><i class="fa fa-check"></i><b>7</b> Emulator diagnostics</a></li>
-<li class="chapter" data-level="8" data-path="proposing-new-points.html"><a href="proposing-new-points.html"><i class="fa fa-check"></i><b>8</b> Proposing new points</a></li>
+<li class="chapter" data-level="8" data-path="propnewpoints.html"><a href="propnewpoints.html"><i class="fa fa-check"></i><b>8</b> Proposing new points</a></li>
 <li class="chapter" data-level="9" data-path="secondwave.html"><a href="secondwave.html"><i class="fa fa-check"></i><b>9</b> Second wave</a></li>
 <li class="chapter" data-level="10" data-path="visualisation-of-the-non-implausible-space-by-wave.html"><a href="visualisation-of-the-non-implausible-space-by-wave.html"><i class="fa fa-check"></i><b>10</b> Visualisation of the non-implausible space by wave</a></li>
 <li class="chapter" data-level="11" data-path="dealing-with-bimodality.html"><a href="dealing-with-bimodality.html"><i class="fa fa-check"></i><b>11</b> Dealing with bimodality</a>
@@ -192,7 +192,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.2" data-path="dealing-with-bimodality.html"><a href="dealing-with-bimodality.html#bimodal-emulators"><i class="fa fa-check"></i><b>11.2</b> Bimodal Emulators</a></li>
 <li class="chapter" data-level="11.3" data-path="dealing-with-bimodality.html"><a href="dealing-with-bimodality.html#implausibility-1"><i class="fa fa-check"></i><b>11.3</b> Implausibility</a></li>
 <li class="chapter" data-level="11.4" data-path="dealing-with-bimodality.html"><a href="dealing-with-bimodality.html#emulator-diagnostics-1"><i class="fa fa-check"></i><b>11.4</b> Emulator diagnostics</a></li>
-<li class="chapter" data-level="11.5" data-path="dealing-with-bimodality.html"><a href="dealing-with-bimodality.html#proposing-new-points-1"><i class="fa fa-check"></i><b>11.5</b> Proposing new points</a></li>
+<li class="chapter" data-level="11.5" data-path="dealing-with-bimodality.html"><a href="dealing-with-bimodality.html#proposing-new-points"><i class="fa fa-check"></i><b>11.5</b> Proposing new points</a></li>
 </ul></li>
 </ul>
 
@@ -218,19 +218,19 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="toggleTextunnamed-chunk-28" style="display: none">
 <div class="panel panel-default">
 <div class="panel-body">
-<p><strong>The first column</strong> shows the emulator outputs plotted against the model outputs. In particular, the emulator expectation is plotted against the model output for each validation point, providing the dots in the graph. The emulator uncertainty at each validation point is shown in the form of a vertical interval that goes from <span class="math inline">\(3\sigma\)</span> below to <span class="math inline">\(3\sigma\)</span> above the emulator expectation, where <span class="math inline">\(\sigma\)</span> is the emulator variance at the considered point. An ‘ideal’ emulator would exactly reproduce the model results: this behaviour is represented by the green line <span class="math inline">\(f(x)=E[f(x)]\)</span> (this is a diagonal line, visible here only in the bottom left and top right corners). Any parameter set whose emulator prediction lies more than <span class="math inline">\(3\sigma\)</span> away from the model output is highlighted in red. Note that we do not need to have no red points for the test to be passed: since we are plotting <span class="math inline">\(3\sigma\)</span> bounds, statistically speaking it is ok to have up to <span class="math inline">\(5\%\)</span> of validation points in red (see <a href="https://en.wikipedia.org/wiki/68%E2%80%9395%E2%80%9399.7_rule">Pukelsheim’s <span class="math inline">\(3\sigma\)</span> rule</a>).
-<strong>The second column</strong> compares the emulator implausibility to the equivalent model implausibility (i.e. the implausibility calculated replacing the emulator output with the model output). There are three cases to consider:</p>
+<p><strong>The first column</strong> shows the emulator outputs plotted against the model outputs. In particular, the emulator expectation is plotted against the model output for each validation point, providing the dots in the graph. The emulator uncertainty at each validation point is shown in the form of a vertical interval that goes from <span class="math inline">\(3\sigma\)</span> below to <span class="math inline">\(3\sigma\)</span> above the emulator expectation, where <span class="math inline">\(\sigma\)</span> is the emulator variance at the considered point. An ‘ideal’ emulator would exactly reproduce the model results: this behaviour is represented by the green line <span class="math inline">\(f(x)=E[f(x)]\)</span> (this is a diagonal line, visible here only in the bottom left and top right corners). Any parameter set whose emulator prediction lies more than <span class="math inline">\(3\sigma\)</span> away from the model output is highlighted in red. Note that we do not need to have no red points for the test to be passed: since we are plotting <span class="math inline">\(3\sigma\)</span> bounds, statistically speaking it is ok to have up to <span class="math inline">\(5\%\)</span> of validation points in red (see <a href="https://en.wikipedia.org/wiki/68%E2%80%9395%E2%80%9399.7_rule">Pukelsheim’s <span class="math inline">\(3\sigma\)</span> rule</a>).</p>
+<p><strong>The second column</strong> compares the emulator implausibility to the equivalent model implausibility (i.e. the implausibility calculated replacing the emulator output with the model output). There are three cases to consider:</p>
 <ul>
-<li><p>The emulator and model both classify a set as implausible or non-implausible (bottom-left and top-right quadrants). This is fine. Both are giving the same classification for the parameter set.</p></li>
-<li><p>The emulator classifies a set as non-implausible, while the model rules it out (top-left quadrant): this is also fine. The emulator should not be expected to shrink the parameter space as much as the model does, at least not on a single wave. Parameter sets classified in this way will survive this wave, but may be removed on subsequent waves as the emulators grow more accurate on a reduced parameter space.</p></li>
-<li><p>The emulator rules out a set, but the model does not (bottom-right quadrant): these are the problem sets, suggesting that the emulator is ruling out parts of the parameter space that it should not be ruling out.
-As for the first test, we should be alarmed only if we spot a systematic problem, with <span class="math inline">\(5\%\)</span> or more of the points in the bottom-right quadrant.
-Finally, <strong>the third column</strong> gives the standardised errors of the emulator outputs in light of the model output: for each validation point, the difference between the emulator output and the model output is calculated, and then divided by the standard deviation <span class="math inline">\(\sigma\)</span> of the emulator at the point. The general rule is that we want our standardised errors to be somewhat normally distributed around <span class="math inline">\(0\)</span>, with <span class="math inline">\(95\%\)</span> of the probability mass between <span class="math inline">\(-2\)</span> and <span class="math inline">\(2\)</span>. When looking at the standard errors plot, we should ask ourselves at least the following questions:</p>
+<li>The emulator and model both classify a set as implausible or non-implausible (bottom-left and top-right quadrants). This is fine. Both are giving the same classification for the parameter set.</li>
+<li>The emulator classifies a set as non-implausible, while the model rules it out (top-left quadrant): this is also fine. The emulator should not be expected to shrink the parameter space as much as the model does, at least not on a single wave. Parameter sets classified in this way will survive this wave, but may be removed on subsequent waves as the emulators grow more accurate on a reduced parameter space.</li>
+<li>The emulator rules out a set, but the model does not (bottom-right quadrant): these are the problem sets, suggesting that the emulator is ruling out parts of the parameter space that it should not be ruling out.
+As for the first test, we should be alarmed only if we spot a systematic problem, with <span class="math inline">\(5\%\)</span> or more of the points in the bottom-right quadrant.</li>
+</ul>
+<p>Finally, <strong>the third column</strong> gives the standardised errors of the emulator outputs in light of the model output: for each validation point, the difference between the emulator output and the model output is calculated, and then divided by the standard deviation <span class="math inline">\(\sigma\)</span> of the emulator at the point. The general rule is that we want our standardised errors to be somewhat normally distributed around <span class="math inline">\(0\)</span>, with <span class="math inline">\(95\%\)</span> of the probability mass between <span class="math inline">\(-3\)</span> and <span class="math inline">\(3\)</span>. The blue bars indicate the distribution of the standardised errors when we restrict our attention only to parameter sets that produce outputs close to the targets. When looking at the standard errors plot, we should ask ourselves at least the following questions:</p>
 <ul>
-<li>Is more than <span class="math inline">\(5\%\)</span> of the probability mass outside the interval <span class="math inline">\([-2,2]\)</span>? If the answer is yes, this means that, even factoring in all the uncertainties in the emulator and in the observed data, the emulator output is too often far from the model output.</li>
-</ul></li>
-<li><p>Is <span class="math inline">\(95\%\)</span> of the probability mass concentrated in a considerably smaller interval than <span class="math inline">\([-2,2]\)</span> (say, for example, <span class="math inline">\([-0.5,0.5]\)</span>)? For this to happen, the emulator uncertainty must be quite large. In such case the emulator, being extremely cautious, will cut out a small part of the parameter space and we will end up needing many more waves of history matching than are necessary.</p></li>
-<li><p>Is the histogram skewing significantly in one direction or the other? If this is the case, the emulator tends to either overestimate or underestimate the model output.</p>
+<li>Is more than <span class="math inline">\(5\%\)</span> of the probability mass outside the interval <span class="math inline">\([-3,3]\)</span>? If the answer is yes, this means that, even factoring in all the uncertainties in the emulator and in the observed data, the emulator output is too often far from the model output.</li>
+<li>Is <span class="math inline">\(95\%\)</span> of the probability mass concentrated in a considerably smaller interval than <span class="math inline">\([-3,3]\)</span> (say, for example, <span class="math inline">\([-0.5,0.5]\)</span>)? For this to happen, the emulator uncertainty must be quite large. In such case the emulator, being extremely cautious, will cut out a small part of the parameter space and we will end up needing many more waves of history matching than are necessary.</li>
+<li>Is the histogram skewing significantly in one direction or the other? If this is the case, the emulator tends to either overestimate or underestimate the model output.
 </div>
 </div>
 </div></li>
@@ -246,7 +246,7 @@ Finally, <strong>the third column</strong> gives the standardised errors of the 
         </div>
       </div>
 <a href="implausibility.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="proposing-new-points.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="propnewpoints.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

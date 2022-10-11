@@ -12,3 +12,4 @@ readr
 dplyr
 stringr
 forcats
+progressr
