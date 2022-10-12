@@ -876,7 +876,7 @@ In this workshop we assume that for a given parameter set $x$, we are interested
 ``{r,  fig.height=8, fig.width=8}
 all_training_aggregated <- aggregate_points(all_training, names(ranges))
 new_all_training_aggregated <- aggregate_points(new_all_training, names(ranges))
-new_new_all_training_aggregated <- aggregate_points(new_new_all_training, names(ranges))
+new_new_all_training_aggregated <- aggregate_points(new_all_training, names(ranges))
 all_aggregated <- list(all_training_aggregated, new_all_training_aggregated, 
                        new_new_all_training_aggregated)
 ``
